@@ -5,7 +5,6 @@
 return {
   "tpope/vim-unimpaired",
   "tpope/vim-surround",
-  -- "akinsho/toggleterm.nvim",
   "navarasu/onedark.nvim",
   "marko-cerovac/material.nvim",
 }
