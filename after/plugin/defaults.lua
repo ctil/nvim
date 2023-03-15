@@ -13,6 +13,7 @@ local mappings = {
 	f = { name = "find" },
 	g = { name = "git" },
 	l = { name = "lsp" },
+	o = { name = "open" },
 	t = { name = "toggle" },
 	w = { name = "workspace" }
 }
@@ -42,9 +43,13 @@ vim.keymap.set('n', '<leader>gs', vim.cmd.Git, { desc = 'Open Git Status' })
 
 vim.keymap.set('n', 'gh', vim.lsp.buf.signature_help, { desc = 'Signature Documentation' })
 
--- vim.keymap.set('n', '<leader>tt', require('FTerm').open, { desc = '[T]oggle [T]erminal' })
+vim.keymap.set('n', '<leader>tt', ':ToggleTerm<cr>', { desc = '[T]oggle [T]erminal' })
 vim.keymap.set('n', '<leader>tl', ':set relativenumber!<cr>', { desc = '[T]oggle relative line numbers' })
 vim.keymap.set('n', '<leader>tf', ':Neotree toggle<CR>', { desc = '[T]oggle [F]ile Browser' })
+
+vim.keymap.set('n', '<leader>on', ':Ex ~/notes<CR>', { desc = '[O]pen [N]otes' })
+vim.keymap.set('n', '<leader>oc', ':Ex ~/.config/nvim<CR>', { desc = '[O]pen vim [C]onfig' })
+vim.keymap.set('n', '<leader>ob', vim.cmd.Ex, { desc = '[O]pen [B]rowser' })
 
 vim.keymap.set('n', '<leader>x', vim.cmd.bd, { desc = 'Delete Buffer' })
 vim.keymap.set('n', '<leader>p', vim.cmd.BufferLinePick, { desc = '[P]ick buffer' })
