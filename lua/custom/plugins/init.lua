@@ -2,4 +2,10 @@
 --  I promise not to create any merge conflicts in this directory :)
 --
 -- See the kickstart.nvim README for more information
-return {}
+return {
+  "tpope/vim-unimpaired",
+  "tpope/vim-surround",
+  "numToStr/FTerm.nvim",
+  "navarasu/onedark.nvim",
+  "marko-cerovac/material.nvim",
+}
