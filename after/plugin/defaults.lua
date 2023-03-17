@@ -20,8 +20,8 @@ local mappings = {
 wk.register(mappings, { prefix = '<leader>' })
 
 -- Volar takeover mode
-require'lspconfig'.volar.setup{
-  filetypes = {'typescript', 'javascript', 'vue', 'json'}
+require('lspconfig').volar.setup {
+	filetypes = { 'typescript', 'javascript', 'vue', 'json' },
 }
 
 -- Keymaps
@@ -37,6 +37,7 @@ vim.keymap.set('n', '<leader>fg', require('telescope.builtin').live_grep, { desc
 vim.keymap.set('n', '<leader>fh', require('telescope.builtin').help_tags, { desc = 'Find Help' })
 vim.keymap.set('n', '<leader>fr', require('telescope.builtin').resume, { desc = 'Find Resume' })
 vim.keymap.set('n', '<leader>fw', require('telescope.builtin').grep_string, { desc = 'Find current Word' })
+vim.keymap.set('n', '<leader>fl', require('telescope').extensions.live_grep_args.live_grep_args, { desc = 'Live grep' })
 
 -- To map cmd-p to ctrl-p: https://www.dfurnes.com/notes/binding-command-in-iterm
 vim.keymap.set('n', '<C-p>', require('telescope.builtin').find_files)
