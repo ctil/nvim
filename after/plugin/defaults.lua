@@ -1,11 +1,11 @@
 -- Vim options
 vim.o.relativenumber = true
 vim.o.hlsearch = true
+vim.o.cursorline = true
 vim.o.shiftwidth = 4
 vim.o.softtabstop = 4
 vim.o.tabstop = 4
-vim.g.material_style = 'palenight'
-vim.cmd 'colorscheme material'
+vim.cmd 'colorscheme tokyonight'
 
 -- Whickkey prefixes
 local wk = require 'which-key'
@@ -18,6 +18,11 @@ local mappings = {
 	w = { name = 'workspace' },
 }
 wk.register(mappings, { prefix = '<leader>' })
+
+-- Volar takeover mode
+require'lspconfig'.volar.setup{
+  filetypes = {'typescript', 'javascript', 'vue', 'json'}
+}
 
 -- Keymaps
 vim.keymap.set('i', 'jk', '<esc>')
@@ -36,16 +41,19 @@ vim.keymap.set('n', '<leader>fw', require('telescope.builtin').grep_string, { de
 -- To map cmd-p to ctrl-p: https://www.dfurnes.com/notes/binding-command-in-iterm
 vim.keymap.set('n', '<C-p>', require('telescope.builtin').find_files)
 
+vim.keymap.set('n', ']h', require('gitsigns').next_hunk, { desc = 'Git Next Hunk' })
+vim.keymap.set('n', '[h', require('gitsigns').prev_hunk, { desc = 'Git Previous Hunk' })
 vim.keymap.set('n', '<leader>gh', require('gitsigns').preview_hunk, { desc = 'Git Preview Hunk' })
+vim.keymap.set('n', '<leader>gr', require('gitsigns').reset_hunk, { desc = 'Git Reset Hunk' })
 vim.keymap.set('n', '<leader>gb', require('gitsigns').blame_line, { desc = 'Git Blame' })
-vim.keymap.set('n', '<leader>gg', ':G ', { desc = 'Open Git Command' })
-vim.keymap.set('n', '<leader>gs', vim.cmd.Git, { desc = 'Open Git Status' })
+vim.keymap.set('n', '<leader>gg', ':0Git ', { desc = 'Open Git Command' })
+vim.keymap.set('n', '<leader>gs', ':0Git<CR>', { desc = 'Open Git Status' })
 
 vim.keymap.set('n', 'gh', vim.lsp.buf.signature_help, { desc = 'Signature Documentation' })
 
 vim.keymap.set('n', '<leader>tt', ':ToggleTerm<cr>', { desc = 'Toggle Terminal' })
 vim.keymap.set('n', '<leader>tl', ':set relativenumber!<cr>', { desc = 'Toggle relative line numbers' })
-vim.keymap.set('n', '<leader>tf', ':Neotree toggle<CR>', { desc = 'Toggle File Browser' })
+-- vim.keymap.set('n', '<leader>tf', ':Neotree toggle<CR>', { desc = 'Toggle File Browser' })
 
 vim.keymap.set('n', '<leader>on', ':Ex ~/notes<CR>', { desc = 'Open Notes' })
 vim.keymap.set('n', '<leader>oc', ':Ex ~/.config/nvim<CR>', { desc = 'Open vim Config' })

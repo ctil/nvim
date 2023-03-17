@@ -3,8 +3,9 @@
 --
 -- See the kickstart.nvim README for more information
 return {
-  "tpope/vim-unimpaired",
-  "tpope/vim-surround",
-  "navarasu/onedark.nvim",
-  "marko-cerovac/material.nvim",
+  'tpope/vim-unimpaired',
+  'tpope/vim-surround',
+  'navarasu/onedark.nvim',
+  'nvim-treesitter/nvim-treesitter-context',
+  'folke/tokyonight.nvim',
 }
