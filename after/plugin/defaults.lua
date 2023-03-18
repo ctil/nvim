@@ -29,6 +29,14 @@ vim.keymap.set('i', 'jk', '<esc>')
 vim.keymap.set('i', 'kj', '<esc>')
 vim.keymap.set('n', '<leader><space>', ':w<cr>', { desc = 'Save' })
 
+-- Center screen after CTRL-D/U
+vim.keymap.set('n', '<C-d>', '<C-d>zz')
+vim.keymap.set('n', '<C-u>', '<C-u>zz')
+
+-- Move selected text up and down with J/K in visual mode
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+
 vim.keymap.set('n', '<C-h>', '<C-w>h')
 vim.keymap.set('n', '<C-l>', '<C-w>l')
 vim.keymap.set('n', '<C-j>', '<C-w>j')
@@ -39,7 +47,8 @@ vim.keymap.set('n', '<leader>fb', require('telescope.builtin').buffers, { desc =
 vim.keymap.set('n', '<leader>fd', require('telescope.builtin').diagnostics, { desc = 'Find Diagnostics' })
 vim.keymap.set('n', '<leader>ff', require('telescope.builtin').find_files, { desc = 'Find Files' })
 -- vim.keymap.set('n', '<leader>fg', require('telescope.builtin').live_grep, { desc = 'Find by Grep' })
-vim.keymap.set('n', '<leader>fg', require('telescope').extensions.live_grep_args.live_grep_args, { desc = 'Find by Grep' })
+vim.keymap.set('n', '<leader>fg', require('telescope').extensions.live_grep_args.live_grep_args,
+	{ desc = 'Find by Grep' })
 vim.keymap.set('n', '<leader>fh', require('telescope.builtin').help_tags, { desc = 'Find Help' })
 vim.keymap.set('n', '<leader>fr', require('telescope.builtin').resume, { desc = 'Find Resume' })
 vim.keymap.set('n', '<leader>fw', require('telescope.builtin').grep_string, { desc = 'Find current Word' })
@@ -71,6 +80,9 @@ vim.keymap.set('n', '<leader>ob', vim.cmd.Ex, { desc = 'Open Browser' })
 vim.keymap.set('n', '<leader>x', vim.cmd.bd, { desc = 'Delete Buffer' })
 vim.keymap.set('n', '<leader>q', vim.cmd.q, { desc = 'Quit' })
 vim.keymap.set('n', '<leader>p', vim.cmd.BufferLinePick, { desc = 'Pick buffer' })
+
+-- When in visual mode, use this mapping to keep what is in your paste buffer
+vim.keymap.set('x', '<leader>p', '"_dP')
 
 vim.keymap.set('n', '<leader>lr', vim.lsp.buf.rename, { desc = 'Lsp Rename' })
 vim.keymap.set('n', '<leader>la', vim.lsp.buf.code_action, { desc = 'Lsp Code Action' })
