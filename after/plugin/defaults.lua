@@ -1,35 +1,40 @@
 -- Vim options
-vim.o.relativenumber = true
+vim.o.cursorline = true
+vim.o.expandtab = true
 vim.o.hlsearch = false
 vim.o.incsearch = true
-vim.o.cursorline = true
+vim.o.relativenumber = true
 vim.o.shiftwidth = 4
 vim.o.softtabstop = 4
+vim.o.splitright = true
 vim.o.tabstop = 4
-vim.cmd 'colorscheme tokyonight'
+vim.cmd 'colorscheme onedark'
 
 -- Whickkey prefixes
 local wk = require 'which-key'
 local mappings = {
-	b = { name = 'buffer' },
-	f = { name = 'find' },
-	g = { name = 'git' },
-	l = { name = 'lsp' },
-	o = { name = 'open' },
-	t = { name = 'toggle' },
-	w = { name = 'workspace' },
+    b = { name = 'buffer' },
+    c = { name = 'copy' },
+    f = { name = 'find' },
+    g = { name = 'git' },
+    l = { name = 'lsp' },
+    t = { name = 'toggle' },
+    w = { name = 'workspace' },
 }
 wk.register(mappings, { prefix = '<leader>' })
 
 -- Volar takeover mode
 require('lspconfig').volar.setup {
-	filetypes = { 'typescript', 'javascript', 'vue', 'json' },
+    filetypes = { 'typescript', 'javascript', 'vue', 'json' },
 }
 
 -- Keymaps
 vim.keymap.set('i', 'jk', '<esc>')
 vim.keymap.set('i', 'kj', '<esc>')
 vim.keymap.set('n', '<leader><space>', ':w<cr>', { desc = 'Save' })
+vim.keymap.set('n', '<leader>p', '<C-^>', { desc = 'Goto previous buffer' })
+vim.keymap.set('n', '<leader>cf', ':let @+ = expand("%")<CR>', { desc = 'Copy filename' })
+vim.keymap.set('n', '<leader>ca', 'ggyG', { desc = 'Copy All File Contents' })
 
 -- Center screen after CTRL-D/U
 vim.keymap.set('n', '<C-d>', '<C-d>zz')
@@ -56,7 +61,7 @@ vim.keymap.set('n', '<leader>fb', require('telescope.builtin').buffers, { desc =
 vim.keymap.set('n', '<leader>fd', require('telescope.builtin').diagnostics, { desc = 'Find Diagnostics' })
 vim.keymap.set('n', '<leader>ff', require('telescope.builtin').git_files, { desc = 'Find Files' })
 vim.keymap.set('n', '<leader>fg', require('telescope').extensions.live_grep_args.live_grep_args,
-	{ desc = 'Find by Grep' })
+    { desc = 'Find by Grep' })
 vim.keymap.set('n', '<leader>fh', require('telescope.builtin').help_tags, { desc = 'Find Help' })
 vim.keymap.set('n', '<leader>fn', ':Telescope find_files cwd=~/notes<CR>', { desc = 'Find Notes' })
 vim.keymap.set('n', '<leader>fq', require('telescope.builtin').quickfix, { desc = 'Find Quickfix List' })
@@ -71,6 +76,7 @@ vim.keymap.set('n', '<C-p>', require('telescope.builtin').git_files)
 -- Git keymaps
 vim.keymap.set('n', ']h', require('gitsigns').next_hunk, { desc = 'Git Next Hunk' })
 vim.keymap.set('n', '[h', require('gitsigns').prev_hunk, { desc = 'Git Previous Hunk' })
+vim.keymap.set('n', '<leader>gc', require('telescope.builtin').git_branches, { desc = 'Find Git Branches' })
 vim.keymap.set('n', '<leader>gh', require('gitsigns').preview_hunk, { desc = 'Git Preview Hunk' })
 vim.keymap.set('n', '<leader>gr', require('gitsigns').reset_hunk, { desc = 'Git Reset Hunk' })
 vim.keymap.set('n', '<leader>gb', require('gitsigns').blame_line, { desc = 'Git Blame' })
@@ -85,11 +91,7 @@ vim.keymap.set('n', '<leader>tt', ':ToggleTerm<cr>', { desc = 'Toggle Terminal' 
 vim.keymap.set('n', '<leader>tp', vim.cmd.BufferLineTogglePin, { desc = 'Toggle Buffer Pin' })
 vim.keymap.set('n', '<leader>tl', ':set relativenumber!<CR>', { desc = 'Toggle relative line numbers' })
 vim.keymap.set('n', '<leader>te', ':Lex 30<CR>', { desc = 'Toggle Netrw Explore' })
-vim.keymap.set('n', '<leader>ts', ':set hlsearch!<CR>', { desc = 'Toggle Search Highlight' })
-
-vim.keymap.set('n', '<leader>on', ':Ex ~/notes<CR>', { desc = 'Open Notes' })
-vim.keymap.set('n', '<leader>oc', ':Ex ~/.config/nvim<CR>', { desc = 'Open vim Config' })
-vim.keymap.set('n', '<leader>ob', vim.cmd.Ex, { desc = 'Open Browser' })
+vim.keymap.set('n', '<leader>th', ':set hlsearch!<CR>', { desc = 'Toggle Search Highlight' })
 
 vim.keymap.set('n', '<leader>x', vim.cmd.bd, { desc = 'Delete Buffer' })
 vim.keymap.set('n', '<leader>q', vim.cmd.q, { desc = 'Quit' })

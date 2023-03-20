@@ -136,6 +136,7 @@ require('lazy').setup({
         theme = 'onedark',
         component_separators = '|',
         section_separators = '',
+        path = 3,
       },
     },
   },
