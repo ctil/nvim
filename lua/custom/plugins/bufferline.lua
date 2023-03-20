@@ -1,8 +1,11 @@
 return {
-  "akinsho/bufferline.nvim",
-  name = "bufferline",
-  version = "*",
+  'akinsho/bufferline.nvim',
+  name = 'bufferline',
+  version = '*',
   opts = {
-    -- configurations go here
+    options = {
+      diagnostics = 'nvim_lsp',
+      -- separator_style = 'slant',
+    },
   },
 }

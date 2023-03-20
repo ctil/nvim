@@ -11,6 +11,7 @@ vim.cmd 'colorscheme tokyonight'
 -- Whickkey prefixes
 local wk = require 'which-key'
 local mappings = {
+	b = { name = 'buffer' },
 	f = { name = 'find' },
 	g = { name = 'git' },
 	l = { name = 'lsp' },
@@ -53,18 +54,19 @@ vim.keymap.set('n', '<C-k>', '<C-w>k')
 -- Search/Find keymaps
 vim.keymap.set('n', '<leader>fb', require('telescope.builtin').buffers, { desc = 'Find existing Buffers' })
 vim.keymap.set('n', '<leader>fd', require('telescope.builtin').diagnostics, { desc = 'Find Diagnostics' })
-vim.keymap.set('n', '<leader>ff', require('telescope.builtin').find_files, { desc = 'Find Files' })
--- vim.keymap.set('n', '<leader>fg', require('telescope.builtin').live_grep, { desc = 'Find by Grep' })
+vim.keymap.set('n', '<leader>ff', require('telescope.builtin').git_files, { desc = 'Find Files' })
 vim.keymap.set('n', '<leader>fg', require('telescope').extensions.live_grep_args.live_grep_args,
 	{ desc = 'Find by Grep' })
 vim.keymap.set('n', '<leader>fh', require('telescope.builtin').help_tags, { desc = 'Find Help' })
+vim.keymap.set('n', '<leader>fn', ':Telescope find_files cwd=~/notes<CR>', { desc = 'Find Notes' })
+vim.keymap.set('n', '<leader>fq', require('telescope.builtin').quickfix, { desc = 'Find Quickfix List' })
 vim.keymap.set('n', '<leader>fr', require('telescope.builtin').resume, { desc = 'Find Resume' })
-vim.keymap.set('n', '<leader>fw', require('telescope.builtin').grep_string, { desc = 'Find current Word' })
--- vim.keymap.set('n', '<leader>fs', require('telescope.builtin').lsp_dynamic_workspace_symbols, { desc = 'Find Workspace Symbols' })
 vim.keymap.set('n', '<leader>fs', require('telescope.builtin').lsp_document_symbols, { desc = 'Find Document Symbols' })
+vim.keymap.set('n', '<leader>fv', ':Telescope git_files cwd=~/.config/nvim<CR>', { desc = 'Find Vim Config Files' })
+vim.keymap.set('n', '<leader>fw', require('telescope.builtin').grep_string, { desc = 'Find current Word' })
 
 -- To map cmd-p to ctrl-p: https://www.dfurnes.com/notes/binding-command-in-iterm
-vim.keymap.set('n', '<C-p>', require('telescope.builtin').find_files)
+vim.keymap.set('n', '<C-p>', require('telescope.builtin').git_files)
 
 -- Git keymaps
 vim.keymap.set('n', ']h', require('gitsigns').next_hunk, { desc = 'Git Next Hunk' })
@@ -74,13 +76,16 @@ vim.keymap.set('n', '<leader>gr', require('gitsigns').reset_hunk, { desc = 'Git 
 vim.keymap.set('n', '<leader>gb', require('gitsigns').blame_line, { desc = 'Git Blame' })
 vim.keymap.set('n', '<leader>gg', ':0Git ', { desc = 'Open Git Command' })
 vim.keymap.set('n', '<leader>gs', ':0Git<CR>', { desc = 'Open Git Status' })
-vim.keymap.set('n', '<leader>go', ':GBrowse<CR>', { desc = 'Open in GitHub' })
+vim.keymap.set('n', '<leader>go', vim.cmd.GBrowse, { desc = 'Open in GitHub' })
+vim.keymap.set('n', '<leader>gv', vim.cmd.Gvdiffsplit, { desc = 'Open vertical diff' })
 
 vim.keymap.set('n', 'gh', vim.lsp.buf.signature_help, { desc = 'Signature Documentation' })
 
 vim.keymap.set('n', '<leader>tt', ':ToggleTerm<cr>', { desc = 'Toggle Terminal' })
-vim.keymap.set('n', '<leader>tl', ':set relativenumber!<cr>', { desc = 'Toggle relative line numbers' })
+vim.keymap.set('n', '<leader>tp', vim.cmd.BufferLineTogglePin, { desc = 'Toggle Buffer Pin' })
+vim.keymap.set('n', '<leader>tl', ':set relativenumber!<CR>', { desc = 'Toggle relative line numbers' })
 vim.keymap.set('n', '<leader>te', ':Lex 30<CR>', { desc = 'Toggle Netrw Explore' })
+vim.keymap.set('n', '<leader>ts', ':set hlsearch!<CR>', { desc = 'Toggle Search Highlight' })
 
 vim.keymap.set('n', '<leader>on', ':Ex ~/notes<CR>', { desc = 'Open Notes' })
 vim.keymap.set('n', '<leader>oc', ':Ex ~/.config/nvim<CR>', { desc = 'Open vim Config' })
@@ -88,7 +93,8 @@ vim.keymap.set('n', '<leader>ob', vim.cmd.Ex, { desc = 'Open Browser' })
 
 vim.keymap.set('n', '<leader>x', vim.cmd.bd, { desc = 'Delete Buffer' })
 vim.keymap.set('n', '<leader>q', vim.cmd.q, { desc = 'Quit' })
-vim.keymap.set('n', '<leader>p', vim.cmd.BufferLinePick, { desc = 'Pick buffer' })
+vim.keymap.set('n', '<leader>bp', vim.cmd.BufferLinePick, { desc = 'Pick buffer' })
+vim.keymap.set('n', '<leader>br', vim.cmd.BufferLineCloseRight, { desc = 'Close buffers to the right' })
 
 -- When in visual mode, use this mapping to keep what is in your paste buffer
 vim.keymap.set('x', '<leader>p', '"_dP')
