@@ -1,6 +1,7 @@
 -- Vim options
 vim.o.relativenumber = true
-vim.o.hlsearch = true
+vim.o.hlsearch = false
+vim.o.incsearch = true
 vim.o.cursorline = true
 vim.o.shiftwidth = 4
 vim.o.softtabstop = 4
@@ -33,9 +34,16 @@ vim.keymap.set('n', '<leader><space>', ':w<cr>', { desc = 'Save' })
 vim.keymap.set('n', '<C-d>', '<C-d>zz')
 vim.keymap.set('n', '<C-u>', '<C-u>zz')
 
+-- Center search terms
+vim.keymap.set('n', 'n', 'nzzzv')
+vim.keymap.set('n', 'N', 'Nzzzv')
+
+-- Keep cursor in same place while using J
+vim.keymap.set('n', 'J', 'mzJ`z')
+
 -- Move selected text up and down with J/K in visual mode
-vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
-vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv")
+vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv")
 
 vim.keymap.set('n', '<C-h>', '<C-w>h')
 vim.keymap.set('n', '<C-l>', '<C-w>l')
@@ -66,6 +74,7 @@ vim.keymap.set('n', '<leader>gr', require('gitsigns').reset_hunk, { desc = 'Git 
 vim.keymap.set('n', '<leader>gb', require('gitsigns').blame_line, { desc = 'Git Blame' })
 vim.keymap.set('n', '<leader>gg', ':0Git ', { desc = 'Open Git Command' })
 vim.keymap.set('n', '<leader>gs', ':0Git<CR>', { desc = 'Open Git Status' })
+vim.keymap.set('n', '<leader>go', ':GBrowse<CR>', { desc = 'Open in GitHub' })
 
 vim.keymap.set('n', 'gh', vim.lsp.buf.signature_help, { desc = 'Signature Documentation' })
 
