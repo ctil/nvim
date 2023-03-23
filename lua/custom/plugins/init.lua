@@ -8,7 +8,6 @@ return {
   'navarasu/onedark.nvim',
   'nvim-treesitter/nvim-treesitter-context',
   'folke/tokyonight.nvim',
-  'idanarye/vim-merginal',
   'Canop/nvim-bacon',
   'ThePrimeagen/harpoon',
 }

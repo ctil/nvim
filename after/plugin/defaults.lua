@@ -78,6 +78,7 @@ vim.keymap.set('n', '<leader>ff', require('telescope.builtin').git_files, { desc
 vim.keymap.set('n', '<leader>fg', require('telescope').extensions.live_grep_args.live_grep_args,
     { desc = 'Find by Grep' })
 vim.keymap.set('n', '<leader>fh', require('telescope.builtin').help_tags, { desc = 'Find Help' })
+vim.keymap.set('n', '<leader>fj', ':Easypick just<CR>', { desc = 'Find Just Targets' })
 vim.keymap.set('n', '<leader>fn', ':Telescope find_files cwd=~/notes<CR>', { desc = 'Find Notes' })
 vim.keymap.set('n', '<leader>fq', require('telescope.builtin').quickfix, { desc = 'Find Quickfix List' })
 vim.keymap.set('n', '<leader>fr', require('telescope.builtin').resume, { desc = 'Find Resume' })
@@ -94,14 +95,15 @@ vim.keymap.set('n', ']e', ':BaconLoad<CR>:w<CR>:BaconNext<CR>', { desc = 'Next b
 vim.keymap.set('n', '[e', '::BaconPrevious<CR>', { desc = 'Previous bacon error' })
 
 -- Git keymaps
-vim.keymap.set('n', '<leader>gc', require('telescope.builtin').git_branches, { desc = 'Find Git Branches' })
-vim.keymap.set('n', '<leader>gh', require('gitsigns').preview_hunk, { desc = 'Git Preview Hunk' })
-vim.keymap.set('n', '<leader>gr', require('gitsigns').reset_hunk, { desc = 'Git Reset Hunk' })
 vim.keymap.set('n', '<leader>gb', require('gitsigns').blame_line, { desc = 'Git Blame' })
+vim.keymap.set('n', '<leader>gc', require('telescope.builtin').git_branches, { desc = 'Git Checkout' })
+vim.keymap.set('n', '<leader>gd', ':Easypick changed_files<CR>', { desc = 'Diff all files against master' })
 vim.keymap.set('n', '<leader>gg', ':0Git ', { desc = 'Open Git Command' })
-vim.keymap.set('n', '<leader>gs', ':0Git<CR>', { desc = 'Open Git Status' })
+vim.keymap.set('n', '<leader>gh', require('gitsigns').preview_hunk, { desc = 'Git Preview Hunk' })
 vim.keymap.set('n', '<leader>go', vim.cmd.GBrowse, { desc = 'Open in GitHub' })
-vim.keymap.set('n', '<leader>gv', vim.cmd.Gvdiffsplit, { desc = 'Open vertical diff' })
+vim.keymap.set('n', '<leader>gr', require('gitsigns').reset_hunk, { desc = 'Git Reset Hunk' })
+vim.keymap.set('n', '<leader>gs', ':0Git<CR>', { desc = 'Open Git Status' })
+vim.keymap.set('n', '<leader>gv', ':Gvdiffsplit master<CR>', { desc = 'Open vertical diff' })
 
 -- Toggles
 vim.keymap.set('n', '<leader>tt', ':ToggleTerm<cr>', { desc = 'Toggle Terminal' })
