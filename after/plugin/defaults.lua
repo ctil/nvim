@@ -24,6 +24,11 @@ local mappings = {
 }
 wk.register(mappings, { prefix = '<leader>' })
 
+-- Make nvim-cmp and autopairs play well together
+local cmp_autopairs = require 'nvim-autopairs.completion.cmp'
+local cmp = require 'cmp'
+cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done())
+
 -- Volar takeover mode
 require('lspconfig').volar.setup {
     filetypes = { 'typescript', 'javascript', 'vue', 'json' },
