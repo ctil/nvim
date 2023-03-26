@@ -19,6 +19,7 @@ local mappings = {
     g = { name = 'git' },
     h = { name = 'harpoon' },
     l = { name = 'lsp' },
+    o = { name = 'open' },
     t = { name = 'toggle' },
     w = { name = 'workspace' },
 }
@@ -44,6 +45,8 @@ vim.keymap.set('n', '<leader>ca', 'ggyG', { desc = 'Copy All File Contents' })
 vim.keymap.set('n', 'gh', vim.lsp.buf.signature_help, { desc = 'Signature Documentation' })
 -- When in visual mode, use this mapping to keep what is in your paste buffer
 vim.keymap.set('x', '<leader>p', '"_dP')
+
+vim.keymap.set('n', '<leader>ob', ':Ex<CR>', { desc = 'Open File Browser' })
 
 -- Center screen after CTRL-D/U
 vim.keymap.set('n', '<C-d>', '<C-d>zz')
@@ -122,6 +125,7 @@ vim.keymap.set('n', '<leader>x', vim.cmd.bd, { desc = 'Delete Buffer' })
 vim.keymap.set('n', '<leader>q', vim.cmd.q, { desc = 'Quit' })
 vim.keymap.set('n', '<leader>bp', vim.cmd.BufferLinePick, { desc = 'Pick buffer' })
 vim.keymap.set('n', '<leader>br', vim.cmd.BufferLineCloseRight, { desc = 'Close buffers to the right' })
+vim.keymap.set('n', '<leader>bl', vim.cmd.BufferLineCloseLeft, { desc = 'Close buffers to the left' })
 
 vim.keymap.set('n', '<leader>lr', vim.lsp.buf.rename, { desc = 'Lsp Rename' })
 vim.keymap.set('n', '<leader>R', vim.lsp.buf.rename, { desc = 'Rename' })
