@@ -262,6 +262,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 
 -- [[ Configure Telescope ]]
 -- See `:help telescope` and `:help telescope.setup()`
+local lga_actions = require("telescope-live-grep-args.actions")
 require('telescope').setup {
   defaults = {
     mappings = {
@@ -272,6 +273,17 @@ require('telescope').setup {
         -- Use C-j and C-k to navigate between selections
         ['<C-j>'] = require('telescope.actions').move_selection_next,
         ['<C-k>'] = require('telescope.actions').move_selection_previous,
+      },
+    },
+  },
+  extensions = {
+    live_grep_args = {
+      auto_quoting = true, -- enable/disable auto-quoting
+      mappings = {
+        i = {
+          ['<C-l>'] = lga_actions.quote_prompt(),
+          ['<C-;>'] = lga_actions.quote_prompt { postfix = ' -t ' },
+        },
       },
     },
   },
@@ -516,7 +528,7 @@ cmp.setup {
     { name = 'nvim_lsp' },
     { name = 'luasnip' },
     { name = 'buffer' },
-    { name = 'nvim_lsp_signature_help'},
+    { name = 'nvim_lsp_signature_help' },
   },
 }
 
