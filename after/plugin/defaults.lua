@@ -20,6 +20,7 @@ local mappings = {
     h = { name = 'harpoon' },
     l = { name = 'lsp' },
     o = { name = 'open' },
+    s = { name = 'session' },
     t = { name = 'toggle' },
     w = { name = 'workspace' },
 }
@@ -71,7 +72,7 @@ vim.keymap.set('n', '<C-k>', '<C-w>k')
 
 -- Harpoon
 vim.keymap.set('n', '<leader>hh', require('harpoon.ui').toggle_quick_menu, { desc = 'Open harpoon menu' })
-vim.keymap.set('n', '<leader>ha', require('harpoon.mark').add_file, { desc = 'Open harpoon menu' })
+vim.keymap.set('n', '<leader>ha', require('harpoon.mark').add_file, { desc = 'Add harpoon mark' })
 vim.keymap.set('n', '<leader>hj', ':lua require("harpoon.ui").nav_file(1)<CR>', { desc = 'Navigate to harpoon file 1' })
 vim.keymap.set('n', '<leader>hk', ':lua require("harpoon.ui").nav_file(2)<CR>', { desc = 'Navigate to harpoon file 2' })
 vim.keymap.set('n', '<leader>hl', ':lua require("harpoon.ui").nav_file(3)<CR>', { desc = 'Navigate to harpoon file 3' })
@@ -128,7 +129,12 @@ vim.keymap.set('n', '<leader>br', vim.cmd.BufferLineCloseRight, { desc = 'Close 
 vim.keymap.set('n', '<leader>bl', vim.cmd.BufferLineCloseLeft, { desc = 'Close buffers to the left' })
 
 vim.keymap.set('n', '<leader>lr', vim.lsp.buf.rename, { desc = 'Lsp Rename' })
+vim.keymap.set('n', '<leader>ls', ':LspRestart<CR>', { desc = 'Lsp Sync/Restart' })
 vim.keymap.set('n', '<leader>R', vim.lsp.buf.rename, { desc = 'Rename' })
 vim.keymap.set('n', '<leader>F', vim.cmd.Format, { desc = 'Format' })
 vim.keymap.set('n', '<leader>la', vim.lsp.buf.code_action, { desc = 'Lsp Code Action' })
 vim.keymap.set('n', '<leader>lf', vim.cmd.Format, { desc = 'Lsp Format' })
+
+
+-- Session management
+vim.keymap.set('n', '<leader>sl', vim.cmd.SearchSession, { desc = 'Search Sessions' })

@@ -10,4 +10,5 @@ return {
   'folke/tokyonight.nvim',
   'Canop/nvim-bacon',
   'ThePrimeagen/harpoon',
+  'rmagatti/session-lens',
 }
