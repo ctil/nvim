@@ -39,6 +39,7 @@ require('lspconfig').volar.setup {
 -- Misc keymaps
 vim.keymap.set('i', 'jk', '<esc>')
 vim.keymap.set('i', 'kj', '<esc>')
+vim.keymap.set('n', '<leader>v', vim.cmd.vsplit, { desc = 'Open a vertical split' })
 vim.keymap.set('n', '<leader><space>', ':w<cr>', { desc = 'Save' })
 vim.keymap.set('n', '<leader>p', '<C-^>', { desc = 'Goto previous buffer' })
 vim.keymap.set('n', '<leader>cf', ':let @+ = expand("%")<CR>', { desc = 'Copy filename' })
@@ -64,11 +65,11 @@ vim.keymap.set('n', 'J', 'mzJ`z')
 vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv")
 vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv")
 
--- Move between splits
-vim.keymap.set('n', '<C-h>', '<C-w>h')
-vim.keymap.set('n', '<C-l>', '<C-w>l')
-vim.keymap.set('n', '<C-j>', '<C-w>j')
-vim.keymap.set('n', '<C-k>', '<C-w>k')
+-- Move between splits (commented out because it's managed by tmux-navigator)
+-- vim.keymap.set('n', '<C-h>', '<C-w>h')
+-- vim.keymap.set('n', '<C-l>', '<C-w>l')
+-- vim.keymap.set('n', '<C-j>', '<C-w>j')
+-- vim.keymap.set('n', '<C-k>', '<C-w>k')
 
 -- Harpoon
 vim.keymap.set('n', '<leader>hh', require('harpoon.ui').toggle_quick_menu, { desc = 'Open harpoon menu' })
@@ -85,7 +86,7 @@ vim.keymap.set('n', '<leader>fb', require('telescope.builtin').buffers, { desc =
 vim.keymap.set('n', '<leader>fd', require('telescope.builtin').diagnostics, { desc = 'Find Diagnostics' })
 vim.keymap.set('n', '<leader>ff', require('telescope.builtin').git_files, { desc = 'Find Files' })
 vim.keymap.set('n', '<leader>fg', require('telescope').extensions.live_grep_args.live_grep_args,
-    { desc = 'Find by Grep' })
+{ desc = 'Find by Grep' })
 vim.keymap.set('n', '<leader>fh', require('telescope.builtin').help_tags, { desc = 'Find Help' })
 vim.keymap.set('n', '<leader>fj', ':Easypick just<CR>', { desc = 'Find Just Targets' })
 vim.keymap.set('n', '<leader>fn', ':Telescope find_files cwd=~/notes<CR>', { desc = 'Find Notes' })
@@ -96,6 +97,7 @@ vim.keymap.set('n', '<leader>fv', ':Telescope git_files cwd=~/.config/nvim<CR>',
 vim.keymap.set('n', '<leader>fw', require('telescope.builtin').grep_string, { desc = 'Find current Word' })
 -- To map cmd-p to ctrl-p: https://www.dfurnes.com/notes/binding-command-in-iterm
 vim.keymap.set('n', '<C-p>', require('telescope.builtin').git_files)
+vim.keymap.set('n', '<D-p>', require('telescope.builtin').git_files)
 
 -- Unimpaired style keymaps
 vim.keymap.set('n', ']h', require('gitsigns').next_hunk, { desc = 'Git Next Hunk' })
@@ -116,6 +118,7 @@ vim.keymap.set('n', '<leader>gv', ':Gvdiffsplit master<CR>', { desc = 'Open vert
 
 -- Toggles
 vim.keymap.set('n', '<leader>tt', ':ToggleTerm<cr>', { desc = 'Toggle Terminal' })
+vim.keymap.set('n', '<leader>tf', ':Neotree toggle<CR>', { desc = 'Toggle Filetree' })
 vim.keymap.set('n', '<leader>tp', vim.cmd.BufferLineTogglePin, { desc = 'Toggle Buffer Pin' })
 vim.keymap.set('n', '<leader>tl', ':set relativenumber!<CR>', { desc = 'Toggle relative line numbers' })
 vim.keymap.set('n', '<leader>te', ':Lex 30<CR>', { desc = 'Toggle Netrw Explore' })
@@ -135,6 +138,6 @@ vim.keymap.set('n', '<leader>F', vim.cmd.Format, { desc = 'Format' })
 vim.keymap.set('n', '<leader>la', vim.lsp.buf.code_action, { desc = 'Lsp Code Action' })
 vim.keymap.set('n', '<leader>lf', vim.cmd.Format, { desc = 'Lsp Format' })
 
-
 -- Session management
 vim.keymap.set('n', '<leader>sl', vim.cmd.SearchSession, { desc = 'Search Sessions' })
+vim.keymap.set('n', '<leader>sd', ':Autosession delete<CR>', { desc = 'Delete Sessions' })

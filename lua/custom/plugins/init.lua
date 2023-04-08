@@ -11,4 +11,5 @@ return {
   'Canop/nvim-bacon',
   'ThePrimeagen/harpoon',
   'rmagatti/session-lens',
+  'christoomey/vim-tmux-navigator',
 }
