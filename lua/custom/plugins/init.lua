@@ -9,7 +9,6 @@ return {
   'nvim-treesitter/nvim-treesitter-context',
   'folke/tokyonight.nvim',
   'Canop/nvim-bacon',
-  'ThePrimeagen/harpoon',
   'rmagatti/session-lens',
   'christoomey/vim-tmux-navigator',
 }

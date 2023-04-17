@@ -10,6 +10,7 @@ vim.o.splitright = false
 vim.o.tabstop = 4
 vim.cmd 'colorscheme onedark'
 
+
 -- Whickkey prefixes
 local wk = require 'which-key'
 local mappings = {
@@ -40,7 +41,7 @@ require('lspconfig').volar.setup {
 vim.keymap.set('i', 'jk', '<esc>')
 vim.keymap.set('i', 'kj', '<esc>')
 vim.keymap.set('n', '<leader>v', vim.cmd.vsplit, { desc = 'Open a vertical split' })
-vim.keymap.set('n', '<leader><space>', ':w<cr>', { desc = 'Save' })
+vim.keymap.set('n', '<leader><space>', ':w<CR>:SaveSession<CR>', { desc = 'Save' })
 vim.keymap.set('n', '<leader>p', '<C-^>', { desc = 'Goto previous buffer' })
 vim.keymap.set('n', '<leader>cf', ':let @+ = expand("%")<CR>', { desc = 'Copy filename' })
 vim.keymap.set('n', '<leader>ca', 'ggyG', { desc = 'Copy All File Contents' })
@@ -139,5 +140,7 @@ vim.keymap.set('n', '<leader>la', vim.lsp.buf.code_action, { desc = 'Lsp Code Ac
 vim.keymap.set('n', '<leader>lf', vim.cmd.Format, { desc = 'Lsp Format' })
 
 -- Session management
-vim.keymap.set('n', '<leader>sl', vim.cmd.SearchSession, { desc = 'Search Sessions' })
 vim.keymap.set('n', '<leader>sd', ':Autosession delete<CR>', { desc = 'Delete Sessions' })
+vim.keymap.set('n', '<leader>sl', vim.cmd.SearchSession, { desc = 'Search Sessions' })
+vim.keymap.set('n', '<leader>sr', ':%bd!<CR>:RestoreSession<CR>', { desc = 'Restore Session' })
+vim.keymap.set('n', '<leader>ss', vim.cmd.SaveSession, { desc = 'Save Session' })
