@@ -41,7 +41,7 @@ require('lspconfig').volar.setup {
 vim.keymap.set('i', 'jk', '<esc>')
 vim.keymap.set('i', 'kj', '<esc>')
 vim.keymap.set('n', '<leader>v', vim.cmd.vsplit, { desc = 'Open a vertical split' })
-vim.keymap.set('n', '<leader><space>', ':w<CR>:SaveSession<CR>', { desc = 'Save' })
+vim.keymap.set('n', '<leader><space>', ':wall<CR>:SaveSession<CR>', { desc = 'Save' })
 vim.keymap.set('n', '<leader>p', '<C-^>', { desc = 'Goto previous buffer' })
 vim.keymap.set('n', '<leader>cf', ':let @+ = expand("%")<CR>', { desc = 'Copy filename' })
 vim.keymap.set('n', '<leader>ca', 'ggyG', { desc = 'Copy All File Contents' })
@@ -109,7 +109,8 @@ vim.keymap.set('n', '[e', '::BaconPrevious<CR>', { desc = 'Previous bacon error'
 -- Git keymaps
 vim.keymap.set('n', '<leader>gb', require('gitsigns').blame_line, { desc = 'Git Blame' })
 vim.keymap.set('n', '<leader>gc', require('telescope.builtin').git_branches, { desc = 'Git Checkout' })
-vim.keymap.set('n', '<leader>gd', ':Easypick changed_files<CR>', { desc = 'Diff all files against master' })
+vim.keymap.set('n', '<leader>gd', ':DiffviewOpen master<CR>', { desc = 'Diff all files against master' })
+vim.keymap.set('n', '<leader>gx', vim.cmd.DiffviewClose, { desc = 'Close diff view' })
 vim.keymap.set('n', '<leader>gg', ':0Git ', { desc = 'Open Git Command' })
 vim.keymap.set('n', '<leader>gh', require('gitsigns').preview_hunk, { desc = 'Git Preview Hunk' })
 vim.keymap.set('n', '<leader>go', vim.cmd.GBrowse, { desc = 'Open in GitHub' })

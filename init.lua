@@ -300,7 +300,7 @@ require('telescope').setup {
 -- Enable telescope fzf native, if installed
 pcall(require('telescope').load_extension, 'fzf')
 pcall(require('telescope').load_extension, 'live_grep_args')
-pcall(require('telescope').load_extension, 'session-lens')
+-- pcall(require('telescope').load_extension, 'session-lens')
 
 -- See `:help telescope.builtin`
 vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
@@ -453,7 +453,7 @@ local servers = {
     ['rust-analyzer'] = {
       checkOnSave = {
         command = 'clippy',
-        enable = false,
+        enable = true,
       },
     },
   },
