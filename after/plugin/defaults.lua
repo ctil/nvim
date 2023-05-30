@@ -10,7 +10,6 @@ vim.o.splitright = false
 vim.o.tabstop = 4
 vim.cmd 'colorscheme onedark'
 
-
 -- Whickkey prefixes
 local wk = require 'which-key'
 local mappings = {
@@ -40,8 +39,10 @@ require('lspconfig').volar.setup {
 -- Misc keymaps
 vim.keymap.set('i', 'jk', '<esc>')
 vim.keymap.set('i', 'kj', '<esc>')
+vim.keymap.set('n', '<leader>d', ":lua vim.diagnostic.open_float({ border = 'rounded' })<CR>",
+    { desc = 'Show diagnostic' })
 vim.keymap.set('n', '<leader>v', vim.cmd.vsplit, { desc = 'Open a vertical split' })
-vim.keymap.set('n', '<leader><space>', ':wall<CR>:SaveSession<CR>', { desc = 'Save' })
+vim.keymap.set('n', '<leader><space>', ':wall<CR>:SessionSave<CR>', { desc = 'Save' })
 vim.keymap.set('n', '<leader>p', '<C-^>', { desc = 'Goto previous buffer' })
 vim.keymap.set('n', '<leader>cf', ':let @+ = expand("%")<CR>', { desc = 'Copy filename' })
 vim.keymap.set('n', '<leader>ca', 'ggyG', { desc = 'Copy All File Contents' })
@@ -63,8 +64,8 @@ vim.keymap.set('n', 'N', 'Nzzzv')
 vim.keymap.set('n', 'J', 'mzJ`z')
 
 -- Move selected text up and down with J/K in visual mode
-vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv")
-vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv")
+-- vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv")
+-- vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv")
 
 -- Move between splits (commented out because it's managed by tmux-navigator)
 -- vim.keymap.set('n', '<C-h>', '<C-w>h')
@@ -84,10 +85,11 @@ vim.keymap.set('n', '<leader>hp', require('harpoon.ui').nav_prev, { desc = 'Navi
 
 -- Search/Find keymaps
 vim.keymap.set('n', '<leader>fb', require('telescope.builtin').buffers, { desc = 'Find existing Buffers' })
+vim.keymap.set('n', '<leader>fc', require('telescope.builtin').colorscheme, { desc = 'Find colorschemes' })
 vim.keymap.set('n', '<leader>fd', require('telescope.builtin').diagnostics, { desc = 'Find Diagnostics' })
 vim.keymap.set('n', '<leader>ff', require('telescope.builtin').git_files, { desc = 'Find Files' })
 vim.keymap.set('n', '<leader>fg', require('telescope').extensions.live_grep_args.live_grep_args,
-{ desc = 'Find by Grep' })
+    { desc = 'Find by Grep' })
 vim.keymap.set('n', '<leader>fh', require('telescope.builtin').help_tags, { desc = 'Find Help' })
 vim.keymap.set('n', '<leader>fj', ':Easypick just<CR>', { desc = 'Find Just Targets' })
 vim.keymap.set('n', '<leader>fn', ':Telescope find_files cwd=~/notes<CR>', { desc = 'Find Notes' })
@@ -116,18 +118,19 @@ vim.keymap.set('n', '<leader>gh', require('gitsigns').preview_hunk, { desc = 'Gi
 vim.keymap.set('n', '<leader>go', vim.cmd.GBrowse, { desc = 'Open in GitHub' })
 vim.keymap.set('n', '<leader>gr', require('gitsigns').reset_hunk, { desc = 'Git Reset Hunk' })
 vim.keymap.set('n', '<leader>gs', ':0Git<CR>', { desc = 'Open Git Status' })
-vim.keymap.set('n', '<leader>gv', ':Gvdiffsplit master<CR>', { desc = 'Open vertical diff' })
+vim.keymap.set('n', '<leader>gv', ':DiffviewOpen master -- %<CR>', { desc = 'Open vertical diff of current file' })
 
 -- Toggles
-vim.keymap.set('n', '<leader>tt', ':ToggleTerm<cr>', { desc = 'Toggle Terminal' })
-vim.keymap.set('n', '<leader>tf', ':Neotree toggle<CR>', { desc = 'Toggle Filetree' })
+-- vim.keymap.set('n', '<leader>tt', ':ToggleTerm<cr>', { desc = 'Toggle Terminal' })
+vim.keymap.set('n', '<leader>tt', ':Neotree toggle<CR>', { desc = 'Toggle Filetree' })
+-- vim.keymap.set('n', '<leader>tf', ':Neotree toggle<CR>', { desc = 'Toggle Filetree' })
 vim.keymap.set('n', '<leader>tp', vim.cmd.BufferLineTogglePin, { desc = 'Toggle Buffer Pin' })
 vim.keymap.set('n', '<leader>tl', ':set relativenumber!<CR>', { desc = 'Toggle relative line numbers' })
 vim.keymap.set('n', '<leader>te', ':Lex 30<CR>', { desc = 'Toggle Netrw Explore' })
 vim.keymap.set('n', '<leader>ts', ':set hlsearch!<CR>', { desc = 'Toggle Search Highlight' })
 vim.keymap.set('n', '<leader>tb', ':BaconList<CR>', { desc = 'Toggle Bacon List' })
 
-vim.keymap.set('n', '<leader>x', vim.cmd.bd, { desc = 'Delete Buffer' })
+vim.keymap.set('n', '<leader>x', ':bp | sp | bn | bd<CR>', { desc = 'Delete Buffer' })
 vim.keymap.set('n', '<leader>q', vim.cmd.q, { desc = 'Quit' })
 vim.keymap.set('n', '<leader>bp', vim.cmd.BufferLinePick, { desc = 'Pick buffer' })
 vim.keymap.set('n', '<leader>br', vim.cmd.BufferLineCloseRight, { desc = 'Close buffers to the right' })
@@ -135,6 +138,7 @@ vim.keymap.set('n', '<leader>bl', vim.cmd.BufferLineCloseLeft, { desc = 'Close b
 
 vim.keymap.set('n', '<leader>lr', vim.lsp.buf.rename, { desc = 'Lsp Rename' })
 vim.keymap.set('n', '<leader>ls', ':LspRestart<CR>', { desc = 'Lsp Sync/Restart' })
+vim.keymap.set('n', '<leader>lx', ':LspStop<CR>', { desc = 'Lsp Stop' })
 vim.keymap.set('n', '<leader>R', vim.lsp.buf.rename, { desc = 'Rename' })
 vim.keymap.set('n', '<leader>F', vim.cmd.Format, { desc = 'Format' })
 vim.keymap.set('n', '<leader>la', vim.lsp.buf.code_action, { desc = 'Lsp Code Action' })
@@ -142,6 +146,6 @@ vim.keymap.set('n', '<leader>lf', vim.cmd.Format, { desc = 'Lsp Format' })
 
 -- Session management
 vim.keymap.set('n', '<leader>sd', ':Autosession delete<CR>', { desc = 'Delete Sessions' })
-vim.keymap.set('n', '<leader>sl', vim.cmd.SearchSession, { desc = 'Search Sessions' })
-vim.keymap.set('n', '<leader>sr', ':%bd!<CR>:RestoreSession<CR>', { desc = 'Restore Session' })
-vim.keymap.set('n', '<leader>ss', vim.cmd.SaveSession, { desc = 'Save Session' })
+vim.keymap.set('n', '<leader>sl', vim.cmd.SessionSearch, { desc = 'Search Sessions' })
+vim.keymap.set('n', '<leader>sr', ':%bd!<CR>:SessionRestore<CR>', { desc = 'Restore Session' })
+vim.keymap.set('n', '<leader>ss', vim.cmd.SessionSave, { desc = 'Save Session' })

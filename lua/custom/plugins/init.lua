@@ -12,4 +12,5 @@ return {
   -- 'rmagatti/session-lens',
   'christoomey/vim-tmux-navigator',
   'sindrets/diffview.nvim',
+  'catppuccin/nvim',
 }
