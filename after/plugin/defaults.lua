@@ -121,13 +121,12 @@ vim.keymap.set('n', '<leader>gs', ':0Git<CR>', { desc = 'Open Git Status' })
 vim.keymap.set('n', '<leader>gv', ':DiffviewOpen master -- %<CR>', { desc = 'Open vertical diff of current file' })
 
 -- Toggles
--- vim.keymap.set('n', '<leader>tt', ':ToggleTerm<cr>', { desc = 'Toggle Terminal' })
 vim.keymap.set('n', '<leader>tt', ':Neotree toggle<CR>', { desc = 'Toggle Filetree' })
--- vim.keymap.set('n', '<leader>tf', ':Neotree toggle<CR>', { desc = 'Toggle Filetree' })
+vim.keymap.set('n', '<leader>n', ':Neotree focus<CR>', { desc = 'Focus Neotree' })
 vim.keymap.set('n', '<leader>tp', vim.cmd.BufferLineTogglePin, { desc = 'Toggle Buffer Pin' })
 vim.keymap.set('n', '<leader>tl', ':set relativenumber!<CR>', { desc = 'Toggle relative line numbers' })
 vim.keymap.set('n', '<leader>te', ':Lex 30<CR>', { desc = 'Toggle Netrw Explore' })
-vim.keymap.set('n', '<leader>ts', ':set hlsearch!<CR>', { desc = 'Toggle Search Highlight' })
+vim.keymap.set('n', '<leader>th', ':set hlsearch!<CR>', { desc = 'Toggle Search Highlight' })
 vim.keymap.set('n', '<leader>tb', ':BaconList<CR>', { desc = 'Toggle Bacon List' })
 
 vim.keymap.set('n', '<leader>x', ':bp | sp | bn | bd<CR>', { desc = 'Delete Buffer' })
