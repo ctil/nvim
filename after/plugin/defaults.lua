@@ -51,6 +51,7 @@ vim.keymap.set('n', 'gh', vim.lsp.buf.signature_help, { desc = 'Signature Docume
 vim.keymap.set('x', '<leader>p', '"_dP')
 
 vim.keymap.set('n', '<leader>ob', ':Ex<CR>', { desc = 'Open File Browser' })
+vim.keymap.set('n', '<leader>og', ':GBrowse master:%<CR>', { desc = 'Open in GitHub' })
 
 -- Center screen after CTRL-D/U
 vim.keymap.set('n', '<C-d>', '<C-d>zz')
@@ -115,7 +116,6 @@ vim.keymap.set('n', '<leader>gd', ':DiffviewOpen master<CR>', { desc = 'Diff all
 vim.keymap.set('n', '<leader>gx', vim.cmd.DiffviewClose, { desc = 'Close diff view' })
 vim.keymap.set('n', '<leader>gg', ':0Git ', { desc = 'Open Git Command' })
 vim.keymap.set('n', '<leader>gh', require('gitsigns').preview_hunk, { desc = 'Git Preview Hunk' })
-vim.keymap.set('n', '<leader>go', vim.cmd.GBrowse, { desc = 'Open in GitHub' })
 vim.keymap.set('n', '<leader>gr', require('gitsigns').reset_hunk, { desc = 'Git Reset Hunk' })
 vim.keymap.set('n', '<leader>gs', ':0Git<CR>', { desc = 'Open Git Status' })
 vim.keymap.set('n', '<leader>gv', ':DiffviewOpen master -- %<CR>', { desc = 'Open vertical diff of current file' })
@@ -144,7 +144,6 @@ vim.keymap.set('n', '<leader>la', vim.lsp.buf.code_action, { desc = 'Lsp Code Ac
 vim.keymap.set('n', '<leader>lf', vim.cmd.Format, { desc = 'Lsp Format' })
 
 -- Session management
-vim.keymap.set('n', '<leader>sd', ':Autosession delete<CR>', { desc = 'Delete Sessions' })
-vim.keymap.set('n', '<leader>sl', vim.cmd.SessionSearch, { desc = 'Search Sessions' })
+vim.keymap.set('n', '<leader>sd', '<cmd>!rm ~/.local/share/nvim/sessions/*<CR>', { desc = 'Delete All Sessions' })
 vim.keymap.set('n', '<leader>sr', ':%bd!<CR>:SessionRestore<CR>', { desc = 'Restore Session' })
 vim.keymap.set('n', '<leader>ss', vim.cmd.SessionSave, { desc = 'Save Session' })
