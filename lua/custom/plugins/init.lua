@@ -8,7 +8,7 @@ return {
   'navarasu/onedark.nvim',
   'nvim-treesitter/nvim-treesitter-context',
   'folke/tokyonight.nvim',
-  'Canop/nvim-bacon',
+  -- 'Canop/nvim-bacon',
   -- 'rmagatti/session-lens',
   'christoomey/vim-tmux-navigator',
   'sindrets/diffview.nvim',

@@ -8,7 +8,7 @@ vim.o.shiftwidth = 4
 vim.o.softtabstop = 4
 vim.o.splitright = false
 vim.o.tabstop = 4
-vim.cmd 'colorscheme onedark'
+vim.cmd 'colorscheme catppuccin-frappe'
 
 -- Whickkey prefixes
 local wk = require 'which-key'
@@ -30,11 +30,6 @@ wk.register(mappings, { prefix = '<leader>' })
 local cmp_autopairs = require 'nvim-autopairs.completion.cmp'
 local cmp = require 'cmp'
 cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done())
-
--- Volar takeover mode
-require('lspconfig').volar.setup {
-    filetypes = { 'typescript', 'javascript', 'vue', 'json' },
-}
 
 -- Misc keymaps
 vim.keymap.set('i', 'jk', '<esc>')
@@ -91,7 +86,9 @@ vim.keymap.set('n', '<leader>fd', require('telescope.builtin').diagnostics, { de
 vim.keymap.set('n', '<leader>ff', require('telescope.builtin').git_files, { desc = 'Find Files' })
 vim.keymap.set('n', '<leader>fg', require('telescope').extensions.live_grep_args.live_grep_args,
     { desc = 'Find by Grep' })
+vim.keymap.set('n', '<leader>/', require('telescope').extensions.live_grep_args.live_grep_args, { desc = 'Find by Grep' })
 vim.keymap.set('n', '<leader>fh', require('telescope.builtin').help_tags, { desc = 'Find Help' })
+vim.keymap.set('n', '<leader>fo', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
 vim.keymap.set('n', '<leader>fj', ':Easypick just<CR>', { desc = 'Find Just Targets' })
 vim.keymap.set('n', '<leader>fn', ':Telescope find_files cwd=~/notes<CR>', { desc = 'Find Notes' })
 vim.keymap.set('n', '<leader>fq', require('telescope.builtin').quickfix, { desc = 'Find Quickfix List' })
@@ -106,8 +103,14 @@ vim.keymap.set('n', '<D-p>', require('telescope.builtin').git_files)
 -- Unimpaired style keymaps
 vim.keymap.set('n', ']h', require('gitsigns').next_hunk, { desc = 'Git Next Hunk' })
 vim.keymap.set('n', '[h', require('gitsigns').prev_hunk, { desc = 'Git Previous Hunk' })
-vim.keymap.set('n', ']e', ':BaconLoad<CR>:w<CR>:BaconNext<CR>', { desc = 'Next bacon error' })
-vim.keymap.set('n', '[e', '::BaconPrevious<CR>', { desc = 'Previous bacon error' })
+-- vim.keymap.set('n', ']e', ':BaconLoad<CR>:w<CR>:BaconNext<CR>', { desc = 'Next bacon error' })
+-- vim.keymap.set('n', '[e', '::BaconPrevious<CR>', { desc = 'Previous bacon error' })
+vim.keymap.set('n', ']t', function()
+    require('trouble').next { skip_groups = true, jump = true }
+end, { desc = 'Next Trouble Item' })
+vim.keymap.set('n', '[t', function()
+    require('trouble').previous { skip_groups = true, jump = true }
+end, { desc = 'Previous Trouble Item' })
 
 -- Git keymaps
 vim.keymap.set('n', '<leader>gb', require('gitsigns').blame_line, { desc = 'Git Blame' })
@@ -127,7 +130,10 @@ vim.keymap.set('n', '<leader>tp', vim.cmd.BufferLineTogglePin, { desc = 'Toggle 
 vim.keymap.set('n', '<leader>tl', ':set relativenumber!<CR>', { desc = 'Toggle relative line numbers' })
 vim.keymap.set('n', '<leader>te', ':Lex 30<CR>', { desc = 'Toggle Netrw Explore' })
 vim.keymap.set('n', '<leader>th', ':set hlsearch!<CR>', { desc = 'Toggle Search Highlight' })
-vim.keymap.set('n', '<leader>tb', ':BaconList<CR>', { desc = 'Toggle Bacon List' })
+-- vim.keymap.set('n', '<leader>tb', ':BaconList<CR>', { desc = 'Toggle Bacon List' })
+vim.keymap.set('n', '<leader>td', ':Trouble workspace_diagnostics<CR>', { desc = 'Toggle diagnostics' })
+vim.keymap.set('n', '<leader>tq', ':Trouble quickfix<CR>', { desc = 'Toggle quickfix' })
+vim.keymap.set('n', '<leader>tr', ':TroubleToggle<CR>', { desc = 'Toggle trouble' })
 
 vim.keymap.set('n', '<leader>x', ':bp | sp | bn | bd<CR>', { desc = 'Delete Buffer' })
 vim.keymap.set('n', '<leader>q', vim.cmd.q, { desc = 'Quit' })

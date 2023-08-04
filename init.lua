@@ -84,7 +84,7 @@ require('lazy').setup({
 
       -- Useful status updates for LSP
       -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
-      { 'j-hui/fidget.nvim', tag = 'legacy', opts = {} },
+      { 'j-hui/fidget.nvim',       tag = 'legacy', opts = {} },
 
       -- Additional lua configuration, makes nvim stuff amazing!
       'folke/neodev.nvim',
@@ -112,7 +112,7 @@ require('lazy').setup({
   },
 
   -- Useful plugin to show you pending keybinds.
-  { 'folke/which-key.nvim', opts = {} },
+  { 'folke/which-key.nvim',  opts = {} },
   {
     -- Adds git releated signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
@@ -126,7 +126,8 @@ require('lazy').setup({
         changedelete = { text = '~' },
       },
       on_attach = function(bufnr)
-        vim.keymap.set('n', '<leader>gp', require('gitsigns').prev_hunk, { buffer = bufnr, desc = '[G]o to [P]revious Hunk' })
+        vim.keymap.set('n', '<leader>gp', require('gitsigns').prev_hunk,
+          { buffer = bufnr, desc = '[G]o to [P]revious Hunk' })
         vim.keymap.set('n', '<leader>gn', require('gitsigns').next_hunk, { buffer = bufnr, desc = '[G]o to [N]ext Hunk' })
         -- vim.keymap.set('n', '<leader>ph', require('gitsigns').preview_hunk, { buffer = bufnr, desc = '[P]review [H]unk' })
       end,
@@ -148,11 +149,14 @@ require('lazy').setup({
     -- See `:help lualine.txt`
     opts = {
       options = {
-        icons_enabled = false,
-        theme = 'onedark',
-        component_separators = '|',
-        section_separators = '',
-        path = 3,
+        icons_enabled = true,
+        theme = 'auto',
+        -- component_separators = '|',
+        -- section_separators = '',
+        path = 1,
+      },
+      sections = {
+        lualine_b = { 'branch', 'diff', 'diagnostics' },
       },
     },
   },
@@ -280,6 +284,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 -- [[ Configure Telescope ]]
 -- See `:help telescope` and `:help telescope.setup()`
 local lga_actions = require 'telescope-live-grep-args.actions'
+local trouble = require 'trouble.providers.telescope'
 require('telescope').setup {
   defaults = {
     mappings = {
@@ -289,6 +294,8 @@ require('telescope').setup {
         -- Use C-j and C-k to navigate between selections
         ['<C-j>'] = require('telescope.actions').move_selection_next,
         ['<C-k>'] = require('telescope.actions').move_selection_previous,
+        -- ['<C-q>'] = require('telescope.actions').smart_send_to_qflist,
+        ['<C-r>'] = trouble.open_with_trouble,
       },
     },
   },
@@ -301,6 +308,7 @@ require('telescope').setup {
           ['<C-i>'] = lga_actions.quote_prompt { postfix = ' -i ' },
           ['<C-t>'] = lga_actions.quote_prompt { postfix = ' -t ' },
           ['<C-g>'] = lga_actions.quote_prompt { postfix = ' services/graph' },
+          ['<C-r>'] = trouble.open_with_trouble,
         },
       },
     },
@@ -313,9 +321,9 @@ pcall(require('telescope').load_extension, 'live_grep_args')
 -- pcall(require('telescope').load_extension, 'session-lens')
 
 -- See `:help telescope.builtin`
-vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
+-- vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
 -- vim.keymap.set('n', '<leader><space>', require('telescope.builtin').buffers, { desc = '[ ] Find existing buffers' })
-vim.keymap.set('n', '<leader>/', function()
+vim.keymap.set('n', '<leader>f/', function()
   -- You can pass additional configuration to telescope to change theme, layout, etc.
   require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
     winblend = 10,
@@ -333,7 +341,7 @@ end, { desc = '[/] Fuzzily search in current buffer' })
 -- See `:help nvim-treesitter`
 require('nvim-treesitter.configs').setup {
   -- Add languages to be installed here that you want installed for treesitter
-  ensure_installed = { 'lua', 'python', 'scss', 'rust', 'tsx', 'typescript', 'help', 'vim' },
+  ensure_installed = { 'lua', 'python', 'scss', 'rust', 'vue', 'tsx', 'typescript', 'help', 'vim' },
 
   -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
   auto_install = true,
@@ -460,11 +468,19 @@ local servers = {
   -- clangd = {},
   -- gopls = {},
   -- pyright = {},
+  volar = {
+      -- Takeover mode
+      filetypes = { 'typescript', 'javascript', 'vue', 'json' },
+      typescript = {
+        tsdk = '/Users/colin/work/monorepo/node_modules/typescript/lib'
+      },
+  },
   rust_analyzer = {
     ['rust-analyzer'] = {
       checkOnSave = {
         command = 'clippy',
         enable = true,
+        extraArgs = { '--target-dir', './rust-analyzer-target' },
       },
     },
   },
