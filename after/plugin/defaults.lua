@@ -18,6 +18,7 @@ local mappings = {
     f = { name = 'find' },
     g = { name = 'git' },
     h = { name = 'harpoon' },
+    j = { name = 'jump' },
     l = { name = 'lsp' },
     o = { name = 'open' },
     s = { name = 'session' },
@@ -30,6 +31,35 @@ wk.register(mappings, { prefix = '<leader>' })
 local cmp_autopairs = require 'nvim-autopairs.completion.cmp'
 local cmp = require 'cmp'
 cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done())
+
+local actions = require 'telescope.actions'
+local action_state = require 'telescope.actions.state'
+local builtin = require 'telescope.builtin'
+
+function _G.pick_branch()
+    builtin.git_branches {
+        attach_mappings = function(prompt_bufnr, map)
+            map('i', '<CR>', function()
+                local selection = action_state.get_selected_entry()
+                actions.close(prompt_bufnr)
+
+                -- Save session
+                vim.cmd 'SessionSave'
+
+                -- Checkout the selected branch
+                local command = string.format('git checkout %s', selection.value)
+                vim.fn.system(command)
+
+                -- Close all buffers
+                vim.cmd '%bd!'
+
+                -- Restore session
+                vim.cmd 'SessionRestore'
+            end)
+            return true
+        end,
+    }
+end
 
 -- Misc keymaps
 vim.keymap.set('i', 'jk', '<esc>')
@@ -71,11 +101,16 @@ vim.keymap.set('n', 'J', 'mzJ`z')
 
 -- Harpoon
 vim.keymap.set('n', '<leader>hh', require('harpoon.ui').toggle_quick_menu, { desc = 'Open harpoon menu' })
+vim.keymap.set('n', '<Tab>h', require('harpoon.ui').toggle_quick_menu, { desc = 'Open harpoon menu' })
 vim.keymap.set('n', '<leader>ha', require('harpoon.mark').add_file, { desc = 'Add harpoon mark' })
 vim.keymap.set('n', '<leader>hj', ':lua require("harpoon.ui").nav_file(1)<CR>', { desc = 'Navigate to harpoon file 1' })
+vim.keymap.set('n', '<Tab>j', ':lua require("harpoon.ui").nav_file(1)<CR>', { desc = 'Navigate to harpoon file 1' })
 vim.keymap.set('n', '<leader>hk', ':lua require("harpoon.ui").nav_file(2)<CR>', { desc = 'Navigate to harpoon file 2' })
-vim.keymap.set('n', '<leader>hl', ':lua require("harpoon.ui").nav_file(3)<CR>', { desc = 'Navigate to harpoon file 3' })
-vim.keymap.set('n', '<leader>h;', ':lua require("harpoon.ui").nav_file(4)<CR>', { desc = 'Navigate to harpoon file 4' })
+vim.keymap.set('n', '<Tab>k', ':lua require("harpoon.ui").nav_file(2)<CR>', { desc = 'Navigate to harpoon file 2' })
+vim.keymap.set('n', '<leader>hu', ':lua require("harpoon.ui").nav_file(3)<CR>', { desc = 'Navigate to harpoon file 3' })
+vim.keymap.set('n', '<Tab>u', ':lua require("harpoon.ui").nav_file(3)<CR>', { desc = 'Navigate to harpoon file 3' })
+vim.keymap.set('n', '<leader>i;', ':lua require("harpoon.ui").nav_file(4)<CR>', { desc = 'Navigate to harpoon file 4' })
+vim.keymap.set('n', '<Tab>i', ':lua require("harpoon.ui").nav_file(4)<CR>', { desc = 'Navigate to harpoon file 4' })
 vim.keymap.set('n', '<leader>hn', require('harpoon.ui').nav_next, { desc = 'Navigate to next harpoon file' })
 vim.keymap.set('n', '<leader>hp', require('harpoon.ui').nav_prev, { desc = 'Navigate to previous harpoon file' })
 
@@ -114,7 +149,7 @@ end, { desc = 'Previous Trouble Item' })
 
 -- Git keymaps
 vim.keymap.set('n', '<leader>gb', require('gitsigns').blame_line, { desc = 'Git Blame' })
-vim.keymap.set('n', '<leader>gc', require('telescope.builtin').git_branches, { desc = 'Git Checkout' })
+vim.keymap.set('n', '<leader>gc', pick_branch, { desc = 'Git Checkout' })
 vim.keymap.set('n', '<leader>gd', ':DiffviewOpen master<CR>', { desc = 'Diff all files against master' })
 vim.keymap.set('n', '<leader>gx', vim.cmd.DiffviewClose, { desc = 'Close diff view' })
 vim.keymap.set('n', '<leader>gg', ':0Git ', { desc = 'Open Git Command' })
@@ -149,7 +184,13 @@ vim.keymap.set('n', '<leader>F', vim.cmd.Format, { desc = 'Format' })
 vim.keymap.set('n', '<leader>la', vim.lsp.buf.code_action, { desc = 'Lsp Code Action' })
 vim.keymap.set('n', '<leader>lf', vim.cmd.Format, { desc = 'Lsp Format' })
 
+-- Jump
+vim.keymap.set('n', '<leader>jt', '/<template<CR>zz', { desc = 'Jump to template' })
+vim.keymap.set('n', '<leader>js', '/<script<CR>zz', { desc = 'Jump to script' })
+vim.keymap.set('n', '<leader>jc', '/<style<CR>zz', { desc = 'Jump to css/style' })
+
 -- Session management
-vim.keymap.set('n', '<leader>sd', '<cmd>!rm ~/.local/share/nvim/sessions/*<CR>', { desc = 'Delete All Sessions' })
+vim.keymap.set('n', '<leader>sd', '<cmd>!rm ~/.local/share/nvim/sessions/* && rm ~/.local/share/nvim/harpoon.json<CR>',
+    { desc = 'Delete All Sessions' })
 vim.keymap.set('n', '<leader>sr', ':%bd!<CR>:SessionRestore<CR>', { desc = 'Restore Session' })
 vim.keymap.set('n', '<leader>ss', vim.cmd.SessionSave, { desc = 'Save Session' })

@@ -341,7 +341,7 @@ end, { desc = '[/] Fuzzily search in current buffer' })
 -- See `:help nvim-treesitter`
 require('nvim-treesitter.configs').setup {
   -- Add languages to be installed here that you want installed for treesitter
-  ensure_installed = { 'lua', 'python', 'scss', 'rust', 'vue', 'tsx', 'typescript', 'help', 'vim' },
+  ensure_installed = { 'lua', 'python', 'scss', 'rust', 'vue', 'tsx', 'typescript', 'help', 'vim', 'graphql' },
 
   -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
   auto_install = true,
@@ -471,12 +471,15 @@ local servers = {
   -- clangd = {},
   -- gopls = {},
   -- pyright = {},
+  emmet_language_server = {
+      filetypes = { 'vue'},
+  },
   volar = {
-      -- Takeover mode
-      filetypes = { 'typescript', 'javascript', 'vue', 'json' },
-      typescript = {
-        tsdk = '/Users/colin/work/monorepo/node_modules/typescript/lib'
-      },
+    -- Takeover mode
+    filetypes = { 'typescript', 'javascript', 'vue', 'json' },
+    typescript = {
+      tsdk = vim.fn.getcwd() .. "/node_modules/typescript/lib",
+    },
   },
   rust_analyzer = {
     ['rust-analyzer'] = {
