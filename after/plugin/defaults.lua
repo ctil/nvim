@@ -13,17 +13,17 @@ vim.cmd 'colorscheme catppuccin-frappe'
 -- Whickkey prefixes
 local wk = require 'which-key'
 local mappings = {
-    b = { name = 'buffer' },
-    c = { name = 'copy' },
-    f = { name = 'find' },
-    g = { name = 'git' },
-    h = { name = 'harpoon' },
-    j = { name = 'jump' },
-    l = { name = 'lsp' },
-    o = { name = 'open' },
-    s = { name = 'session' },
-    t = { name = 'toggle' },
-    w = { name = 'workspace' },
+  b = { name = 'buffer' },
+  c = { name = 'copy' },
+  f = { name = 'find' },
+  g = { name = 'git' },
+  h = { name = 'harpoon' },
+  j = { name = 'jump' },
+  l = { name = 'lsp' },
+  o = { name = 'open' },
+  s = { name = 'session' },
+  t = { name = 'toggle' },
+  w = { name = 'workspace' },
 }
 wk.register(mappings, { prefix = '<leader>' })
 
@@ -37,35 +37,34 @@ local action_state = require 'telescope.actions.state'
 local builtin = require 'telescope.builtin'
 
 function _G.pick_branch()
-    builtin.git_branches {
-        attach_mappings = function(prompt_bufnr, map)
-            map('i', '<CR>', function()
-                local selection = action_state.get_selected_entry()
-                actions.close(prompt_bufnr)
+  builtin.git_branches {
+    attach_mappings = function(prompt_bufnr, map)
+      map('i', '<CR>', function()
+        local selection = action_state.get_selected_entry()
+        actions.close(prompt_bufnr)
 
-                -- Save session
-                vim.cmd 'SessionSave'
+        -- Save session
+        vim.cmd 'SessionSave'
 
-                -- Checkout the selected branch
-                local command = string.format('git checkout %s', selection.value)
-                vim.fn.system(command)
+        -- Checkout the selected branch
+        local command = string.format('git checkout %s', selection.value)
+        vim.fn.system(command)
 
-                -- Close all buffers
-                vim.cmd '%bd!'
+        -- Close all buffers
+        vim.cmd '%bd!'
 
-                -- Restore session
-                vim.cmd 'SessionRestore'
-            end)
-            return true
-        end,
-    }
+        -- Restore session
+        vim.cmd 'SessionRestore'
+      end)
+      return true
+    end,
+  }
 end
 
 -- Misc keymaps
 vim.keymap.set('i', 'jk', '<esc>')
 vim.keymap.set('i', 'kj', '<esc>')
-vim.keymap.set('n', '<leader>d', ":lua vim.diagnostic.open_float({ border = 'rounded' })<CR>",
-    { desc = 'Show diagnostic' })
+vim.keymap.set('n', '<leader>d', ":lua vim.diagnostic.open_float({ border = 'rounded' })<CR>", { desc = 'Show diagnostic' })
 vim.keymap.set('n', '<leader>v', vim.cmd.vsplit, { desc = 'Open a vertical split' })
 vim.keymap.set('n', '<leader><space>', ':wall<CR>:SessionSave<CR>', { desc = 'Save' })
 vim.keymap.set('n', '<leader>p', '<C-^>', { desc = 'Goto previous buffer' })
@@ -119,8 +118,7 @@ vim.keymap.set('n', '<leader>fb', require('telescope.builtin').buffers, { desc =
 vim.keymap.set('n', '<leader>fc', require('telescope.builtin').colorscheme, { desc = 'Find colorschemes' })
 vim.keymap.set('n', '<leader>fd', require('telescope.builtin').diagnostics, { desc = 'Find Diagnostics' })
 vim.keymap.set('n', '<leader>ff', require('telescope.builtin').git_files, { desc = 'Find Files' })
-vim.keymap.set('n', '<leader>fg', require('telescope').extensions.live_grep_args.live_grep_args,
-    { desc = 'Find by Grep' })
+vim.keymap.set('n', '<leader>fg', require('telescope').extensions.live_grep_args.live_grep_args, { desc = 'Find by Grep' })
 vim.keymap.set('n', '<leader>/', require('telescope').extensions.live_grep_args.live_grep_args, { desc = 'Find by Grep' })
 vim.keymap.set('n', '<leader>fh', require('telescope.builtin').help_tags, { desc = 'Find Help' })
 vim.keymap.set('n', '<leader>fo', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
@@ -141,10 +139,10 @@ vim.keymap.set('n', '[h', require('gitsigns').prev_hunk, { desc = 'Git Previous 
 -- vim.keymap.set('n', ']e', ':BaconLoad<CR>:w<CR>:BaconNext<CR>', { desc = 'Next bacon error' })
 -- vim.keymap.set('n', '[e', '::BaconPrevious<CR>', { desc = 'Previous bacon error' })
 vim.keymap.set('n', ']t', function()
-    require('trouble').next { skip_groups = true, jump = true }
+  require('trouble').next { skip_groups = true, jump = true }
 end, { desc = 'Next Trouble Item' })
 vim.keymap.set('n', '[t', function()
-    require('trouble').previous { skip_groups = true, jump = true }
+  require('trouble').previous { skip_groups = true, jump = true }
 end, { desc = 'Previous Trouble Item' })
 
 -- Git keymaps
@@ -190,7 +188,6 @@ vim.keymap.set('n', '<leader>js', '/<script<CR>zz', { desc = 'Jump to script' })
 vim.keymap.set('n', '<leader>jc', '/<style<CR>zz', { desc = 'Jump to css/style' })
 
 -- Session management
-vim.keymap.set('n', '<leader>sd', '<cmd>!rm ~/.local/share/nvim/sessions/* && rm ~/.local/share/nvim/harpoon.json<CR>',
-    { desc = 'Delete All Sessions' })
+vim.keymap.set('n', '<leader>sd', '<cmd>!rm ~/.local/share/nvim/sessions/* && rm ~/.local/share/nvim/harpoon.json<CR>', { desc = 'Delete All Sessions' })
 vim.keymap.set('n', '<leader>sr', ':%bd!<CR>:SessionRestore<CR>', { desc = 'Restore Session' })
 vim.keymap.set('n', '<leader>ss', vim.cmd.SessionSave, { desc = 'Save Session' })
