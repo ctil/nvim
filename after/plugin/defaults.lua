@@ -6,7 +6,7 @@ vim.o.incsearch = true
 vim.o.relativenumber = true
 vim.o.shiftwidth = 4
 vim.o.softtabstop = 4
-vim.o.splitright = false
+vim.o.splitright = true
 vim.o.tabstop = 4
 vim.cmd 'colorscheme catppuccin-frappe'
 
@@ -118,6 +118,7 @@ vim.keymap.set('n', '<leader>fb', require('telescope.builtin').buffers, { desc =
 vim.keymap.set('n', '<leader>fc', require('telescope.builtin').colorscheme, { desc = 'Find colorschemes' })
 vim.keymap.set('n', '<leader>fd', require('telescope.builtin').diagnostics, { desc = 'Find Diagnostics' })
 vim.keymap.set('n', '<leader>ff', require('telescope.builtin').git_files, { desc = 'Find Files' })
+vim.keymap.set('n', '<leader>fm', require('telescope.builtin').marks, { desc = 'Find marks' })
 vim.keymap.set('n', '<leader>fg', require('telescope').extensions.live_grep_args.live_grep_args, { desc = 'Find by Grep' })
 vim.keymap.set('n', '<leader>/', require('telescope').extensions.live_grep_args.live_grep_args, { desc = 'Find by Grep' })
 vim.keymap.set('n', '<leader>fh', require('telescope.builtin').help_tags, { desc = 'Find Help' })
@@ -146,6 +147,7 @@ vim.keymap.set('n', '[t', function()
 end, { desc = 'Previous Trouble Item' })
 
 -- Git keymaps
+vim.keymap.set('n', '<leader>ga', ':0Git commit -a --amend --no-edit<CR>', { desc = 'Amend current commit' })
 vim.keymap.set('n', '<leader>gb', require('gitsigns').blame_line, { desc = 'Git Blame' })
 vim.keymap.set('n', '<leader>gc', pick_branch, { desc = 'Git Checkout' })
 vim.keymap.set('n', '<leader>gd', ':DiffviewOpen master<CR>', { desc = 'Diff all files against master' })

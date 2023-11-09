@@ -8,7 +8,6 @@ return {
       javascript = { 'prettier' },
       vue = { 'prettier' },
       typescript = { 'prettier' },
-      rust = { 'rustfmt' },
       -- Use the "_" filetype to run formatters on filetypes that don't
       -- have other formatters configured.
       ['_'] = { 'trim_whitespace' },
