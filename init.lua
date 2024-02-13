@@ -108,6 +108,10 @@ require('lazy').setup({
       -- Additional completions
       'hrsh7th/cmp-cmdline',
       'hrsh7th/cmp-buffer',
+      'hrsh7th/cmp-nvim-lsp-signature-help',
+
+      -- Codeium AI completions
+      'Exafunction/codeium.nvim',
     },
   },
 
@@ -156,6 +160,7 @@ require('lazy').setup({
       },
       sections = {
         lualine_b = { 'branch', 'diff', 'diagnostics' },
+        lualine_a = { 'mode', 'codeium#GetStatusString' },
       },
     },
   },
@@ -529,6 +534,7 @@ require('luasnip.loaders.from_vscode').lazy_load()
 luasnip.config.setup {}
 
 cmp.setup {
+  -- completion = { autocomplete = false },
   snippet = {
     expand = function(args)
       luasnip.lsp_expand(args.body)
@@ -564,6 +570,7 @@ cmp.setup {
     end, { 'i', 's' }),
   },
   sources = {
+    { name = 'codeium' },
     { name = 'nvim_lsp' },
     { name = 'luasnip' },
     { name = 'buffer' },
