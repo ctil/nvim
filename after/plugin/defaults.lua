@@ -127,6 +127,7 @@ vim.keymap.set('n', '<leader>fj', ':Easypick just<CR>', { desc = 'Find Just Targ
 vim.keymap.set('n', '<leader>fn', ':Telescope find_files cwd=~/notes<CR>', { desc = 'Find Notes' })
 vim.keymap.set('n', '<leader>fq', require('telescope.builtin').quickfix, { desc = 'Find Quickfix List' })
 vim.keymap.set('n', '<leader>fr', require('telescope.builtin').resume, { desc = 'Find Resume' })
+vim.keymap.set('n', '<leader>fu', require('telescope.builtin').lsp_references, { desc = 'Find Usages/References' })
 vim.keymap.set('n', '<leader>fs', require('telescope.builtin').lsp_document_symbols, { desc = 'Find Document Symbols' })
 vim.keymap.set('n', '<leader>fv', ':Telescope git_files cwd=~/.config/nvim<CR>', { desc = 'Find Vim Config Files' })
 vim.keymap.set('n', '<leader>fw', require('telescope.builtin').grep_string, { desc = 'Find current Word' })
