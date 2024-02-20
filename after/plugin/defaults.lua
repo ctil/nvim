@@ -35,6 +35,11 @@ cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done())
 local actions = require 'telescope.actions'
 local action_state = require 'telescope.actions.state'
 local builtin = require 'telescope.builtin'
+local pickers = require 'telescope.pickers'
+local finders = require 'telescope.finders'
+local previewers = require 'telescope.previewers'
+local putils = require 'telescope.previewers.utils'
+local sorters = require 'telescope.sorters'
 
 function _G.pick_branch()
   builtin.git_branches {
@@ -59,6 +64,42 @@ function _G.pick_branch()
       return true
     end,
   }
+end
+
+local run_just_show = previewers.new_buffer_previewer {
+  title = 'Justfile Target',
+  get_buffer_by_name = function(_, entry)
+    return entry.value
+  end,
+
+  define_preview = function(self, entry, _)
+    local target = string.gmatch(entry.value, '%S+')()
+    putils.job_maker({ 'just', '--show', target }, self.state.bufnr, {
+      value = target,
+      bufname = self.state.bufname,
+    })
+  end,
+}
+
+function _G.just_picker()
+  pickers
+    .new({}, {
+      prompt_title = 'Justfile Targets',
+      finder = finders.new_oneshot_job({ 'just' }, {}),
+      previewer = run_just_show,
+      sorter = sorters.get_generic_fuzzy_sorter(),
+      attach_mappings = function(prompt_bufnr, map)
+        map('i', '<CR>', function()
+          local selection = action_state.get_selected_entry()
+          actions.close(prompt_bufnr)
+          local target = string.gmatch(selection.value, '%S+')()
+          local command = string.format('!just %s', target)
+          vim.cmd(command)
+        end)
+        return true
+      end,
+    })
+    :find()
 end
 
 -- Misc keymaps
@@ -123,7 +164,7 @@ vim.keymap.set('n', '<leader>fg', require('telescope').extensions.live_grep_args
 vim.keymap.set('n', '<leader>/', require('telescope').extensions.live_grep_args.live_grep_args, { desc = 'Find by Grep' })
 vim.keymap.set('n', '<leader>fh', require('telescope.builtin').help_tags, { desc = 'Find Help' })
 vim.keymap.set('n', '<leader>fo', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
-vim.keymap.set('n', '<leader>fj', ':Easypick just<CR>', { desc = 'Find Just Targets' })
+vim.keymap.set('n', '<leader>fj', just_picker, { desc = 'Find Just Targets' })
 vim.keymap.set('n', '<leader>fn', ':Telescope find_files cwd=~/notes<CR>', { desc = 'Find Notes' })
 vim.keymap.set('n', '<leader>fq', require('telescope.builtin').quickfix, { desc = 'Find Quickfix List' })
 vim.keymap.set('n', '<leader>fr', require('telescope.builtin').resume, { desc = 'Find Resume' })
