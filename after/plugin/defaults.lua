@@ -85,7 +85,7 @@ function _G.just_picker()
   pickers
     .new({}, {
       prompt_title = 'Justfile Targets',
-      finder = finders.new_oneshot_job({ 'just' }, {}),
+      finder = finders.new_oneshot_job({ 'just', 'targets' }, {}),
       previewer = run_just_show,
       sorter = sorters.get_generic_fuzzy_sorter(),
       attach_mappings = function(prompt_bufnr, map)
