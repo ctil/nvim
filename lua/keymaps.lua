@@ -105,6 +105,7 @@ vim.keymap.set('n', '<leader>fw', require('telescope.builtin').grep_string, { de
 -- To map cmd-p to ctrl-p: https://www.dfurnes.com/notes/binding-command-in-iterm
 vim.keymap.set('n', '<C-p>', require('telescope.builtin').git_files)
 vim.keymap.set('n', '<D-p>', require('telescope.builtin').git_files)
+vim.keymap.set('n', '<leader>S', require('spectre').toggle, { desc = 'Toggle Spectre' })
 
 -- Unimpaired style keymaps
 -- vim.keymap.set('n', ']e', ':BaconLoad<CR>:w<CR>:BaconNext<CR>', { desc = 'Next bacon error' })
@@ -136,8 +137,20 @@ vim.keymap.set('n', '<leader>te', ':Lex 30<CR>', { desc = 'Toggle Netrw Explore'
 vim.keymap.set('n', '<leader>th', ':set hlsearch!<CR>', { desc = 'Toggle Search Highlight' })
 -- vim.keymap.set('n', '<leader>tb', ':BaconList<CR>', { desc = 'Toggle Bacon List' })
 vim.keymap.set('n', '<leader>td', ':Trouble workspace_diagnostics<CR>', { desc = 'Toggle diagnostics' })
-vim.keymap.set('n', '<leader>tq', ':Trouble quickfix<CR>', { desc = 'Toggle quickfix' })
 vim.keymap.set('n', '<leader>tr', ':TroubleToggle<CR>', { desc = 'Toggle trouble' })
+
+local function toggle_quickfix()
+  local windows = vim.fn.getwininfo()
+  for _, win in pairs(windows) do
+    if win['quickfix'] == 1 then
+      vim.cmd.cclose()
+      return
+    end
+  end
+  vim.cmd.copen()
+end
+
+vim.keymap.set('n', '<leader>tq', toggle_quickfix, { desc = 'Toggle Quickfix Window' })
 
 vim.keymap.set('n', '<leader>x', ':bp | sp | bn | bd<CR>', { desc = 'Delete Buffer' })
 vim.keymap.set('n', '<leader>q', vim.cmd.q, { desc = 'Quit' })

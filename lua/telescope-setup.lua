@@ -11,7 +11,7 @@ require('telescope').setup {
         -- Use C-j and C-k to navigate between selections
         -- ['<C-j>'] = require('telescope.actions').move_selection_next,
         -- ['<C-k>'] = require('telescope.actions').move_selection_previous,
-        ['<C-q>'] = require('telescope.actions').smart_send_to_qflist,
+        -- ['<C-q>'] = require('telescope.actions').smart_send_to_qflist,
         ['<C-r>'] = trouble.open_with_trouble,
       },
     },
@@ -99,7 +99,7 @@ local previewers = require 'telescope.previewers'
 local putils = require 'telescope.previewers.utils'
 local sorters = require 'telescope.sorters'
 
-function _G.pick_branch()
+local function pick_branch()
   builtin.git_branches {
     attach_mappings = function(prompt_bufnr, map)
       map('i', '<CR>', function()
@@ -139,7 +139,7 @@ local run_just_show = previewers.new_buffer_previewer {
   end,
 }
 
-function _G.just_picker()
+local function just_picker()
   pickers
     .new({}, {
       prompt_title = 'Justfile Targets',
