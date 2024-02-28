@@ -217,6 +217,7 @@ vim.keymap.set('n', '<leader>q', vim.cmd.q, { desc = 'Quit' })
 vim.keymap.set('n', '<leader>bp', vim.cmd.BufferLinePick, { desc = 'Pick buffer' })
 vim.keymap.set('n', '<leader>br', vim.cmd.BufferLineCloseRight, { desc = 'Close buffers to the right' })
 vim.keymap.set('n', '<leader>bl', vim.cmd.BufferLineCloseLeft, { desc = 'Close buffers to the left' })
+vim.keymap.set('n', '<leader>bo', vim.cmd.BufferLineCloseOthers, { desc = 'Close other buffers' })
 
 vim.keymap.set('n', '<leader>lr', vim.lsp.buf.rename, { desc = 'Lsp Rename' })
 vim.keymap.set('n', '<leader>ls', ':LspRestart<CR>', { desc = 'Lsp Sync/Restart' })
