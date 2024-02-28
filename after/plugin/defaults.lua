@@ -114,6 +114,8 @@ vim.keymap.set('n', '<leader>ca', 'ggyG', { desc = 'Copy All File Contents' })
 vim.keymap.set('n', 'gh', vim.lsp.buf.signature_help, { desc = 'Signature Documentation' })
 -- When in visual mode, use this mapping to keep what is in your paste buffer
 vim.keymap.set('x', '<leader>p', '"_dP')
+-- Open current directory in oil
+vim.keymap.set('n', '-', '<CMD>Oil<CR>', { desc = 'Open parent directory' })
 
 vim.keymap.set('n', '<leader>ob', ':Ex<CR>', { desc = 'Open File Browser' })
 vim.keymap.set('n', '<leader>og', ':GBrowse master:%<CR>', { desc = 'Open in GitHub' })
