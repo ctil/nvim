@@ -49,3 +49,12 @@ vim.opt.cursorline = true
 
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 10
+
+vim.o.expandtab = true
+vim.o.incsearch = true
+vim.o.relativenumber = true
+vim.o.shiftwidth = 4
+vim.o.softtabstop = 4
+vim.o.splitright = true
+vim.o.tabstop = 4
+vim.cmd 'colorscheme catppuccin-frappe'
