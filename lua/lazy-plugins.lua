@@ -4,7 +4,7 @@
 --
 --  You can also configure plugins after the setup call,
 --    as they will be available in your neovim runtime.
-require('lazy').setup({
+require('lazy').setup {
   -- NOTE: First, some plugins that don't require any configuration
 
   -- Git related plugins
@@ -15,7 +15,7 @@ require('lazy').setup({
   'tpope/vim-sleuth',
 
   -- Search/replace
-  'nvim-pack/nvim-spectre',
+  { 'nvim-pack/nvim-spectre', event = 'VeryLazy' },
 
   -- NOTE: This is where your plugins related to LSP can be installed.
   --  The configuration is done below. Search for lspconfig to find it below.
@@ -39,6 +39,7 @@ require('lazy').setup({
   {
     -- Autocompletion
     'hrsh7th/nvim-cmp',
+    event = 'InsertEnter',
     dependencies = {
       -- Snippet Engine & its associated nvim-cmp source
       {
@@ -73,7 +74,7 @@ require('lazy').setup({
   },
 
   -- Useful plugin to show you pending keybinds.
-  { 'folke/which-key.nvim', opts = {} },
+  { 'folke/which-key.nvim', event = 'VeryLazy', opts = {} },
   {
     -- Adds git related signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
@@ -195,6 +196,7 @@ require('lazy').setup({
   -- Fuzzy Finder (files, lsp, etc)
   {
     'nvim-telescope/telescope.nvim',
+    event = 'VeryLazy',
     branch = '0.1.x',
     dependencies = {
       'nvim-lua/plenary.nvim',
@@ -211,6 +213,7 @@ require('lazy').setup({
           return vim.fn.executable 'make' == 1
         end,
       },
+      { 'nvim-telescope/telescope-ui-select.nvim' },
     },
   },
 
@@ -223,17 +226,113 @@ require('lazy').setup({
     build = ':TSUpdate',
   },
 
+  'tpope/vim-unimpaired',
+  'tpope/vim-surround',
+  { 'navarasu/onedark.nvim', event = 'VeryLazy' },
+  {
+    'catppuccin/nvim',
+    lazy = false, -- make sure we load this during startup if it is your main colorscheme
+    priority = 1000, -- make sure to load this before all the other start plugins
+  },
+  'nvim-treesitter/nvim-treesitter-context',
+  { 'folke/tokyonight.nvim', event = 'VeryLazy' },
+  'christoomey/vim-tmux-navigator',
+  'sindrets/diffview.nvim',
+  {
+    'rmagatti/auto-session',
+    opts = { auto_session_use_git_branch = true, auto_save_enabled = false },
+  },
+  {
+    'windwp/nvim-autopairs',
+    name = 'autopairs',
+  },
+  {
+    'akinsho/bufferline.nvim',
+    name = 'bufferline',
+    version = '*',
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    opts = {
+      options = {
+        diagnostics = 'nvim_lsp',
+        -- separator_style = 'slant',
+      },
+    },
+  },
+  {
+    'Exafunction/codeium.nvim',
+    event = 'VeryLazy',
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      'hrsh7th/nvim-cmp',
+    },
+    config = function()
+      require('codeium').setup {}
+    end,
+  },
+  {
+    'stevearc/conform.nvim',
+    opts = {
+      formatters_by_ft = {
+        lua = { 'stylua' },
+        -- Conform will run multiple formatters sequentially
+        python = { 'isort', 'black' },
+        javascript = { 'prettier' },
+        vue = { 'prettier' },
+        typescript = { 'prettier' },
+        -- Use the "_" filetype to run formatters on filetypes that don't
+        -- have other formatters configured.
+        ['_'] = { 'trim_whitespace' },
+      },
+      format_on_save = {
+        -- These options will be passed to conform.format()
+        timeout_ms = 500,
+        lsp_fallback = true,
+      },
+    },
+  },
+  {
+    'ThePrimeagen/harpoon',
+    event = 'VeryLazy',
+    version = '*',
+    dependencies = { 'nvim-lua/plenary.nvim' },
+    opts = { mark_branch = true },
+    config = function()
+      require('harpoon').setup {
+        mark_branch = true,
+        global_settings = {
+          mark_branch = true,
+        },
+      }
+    end,
+  },
+  {
+    'nvim-neo-tree/neo-tree.nvim',
+    event = 'VeryLazy',
+    version = '*',
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      'nvim-tree/nvim-web-devicons', -- not strictly required, but recommended
+      'MunifTanjim/nui.nvim',
+    },
+    config = function()
+      require('neo-tree').setup {
+        filesystem = {
+          follow_current_file = { enabled = true },
+        },
+      }
+    end,
+  },
+  {
+    'stevearc/oil.nvim',
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
+  },
+  {
+    'folke/trouble.nvim',
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
+  },
   -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
   --       These are some example plugins that I've included in the kickstart repository.
   --       Uncomment any of the lines below to enable them.
   -- require 'kickstart.plugins.autoformat',
   -- require 'kickstart.plugins.debug',
-
-  -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
-  --    You can use this folder to prevent any conflicts with this init.lua if you're interested in keeping
-  --    up-to-date with whatever is in the kickstart repo.
-  --    Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
-  --
-  --    For additional information see: https://github.com/folke/lazy.nvim#-structuring-your-plugins
-  { import = 'custom.plugins' },
-}, {})
+}
