@@ -1,7 +1,6 @@
 -- [[ Configure Telescope ]]
 -- See `:help telescope` and `:help telescope.setup()`
 local lga_actions = require 'telescope-live-grep-args.actions'
-local trouble = require 'trouble.providers.telescope'
 require('telescope').setup {
   event = 'VeryLazy',
   defaults = {
@@ -10,7 +9,6 @@ require('telescope').setup {
         -- ['<C-u>'] = false,
         -- ['<C-d>'] = false,
         -- ['<C-q>'] = require('telescope.actions').smart_send_to_qflist,
-        ['<C-r>'] = trouble.open_with_trouble,
       },
     },
   },
@@ -23,7 +21,6 @@ require('telescope').setup {
           ['<C-i>'] = lga_actions.quote_prompt { postfix = ' -i ' },
           ['<C-t>'] = lga_actions.quote_prompt { postfix = ' -t ' },
           ['<C-g>'] = lga_actions.quote_prompt { postfix = ' services/graph' },
-          ['<C-r>'] = trouble.open_with_trouble,
         },
       },
     },

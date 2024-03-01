@@ -5,8 +5,6 @@
 --  You can also configure plugins after the setup call,
 --    as they will be available in your neovim runtime.
 require('lazy').setup {
-  -- NOTE: First, some plugins that don't require any configuration
-
   -- Git related plugins
   'tpope/vim-fugitive',
   'tpope/vim-rhubarb',
@@ -14,8 +12,30 @@ require('lazy').setup {
   -- Detect tabstop and shiftwidth automatically
   'tpope/vim-sleuth',
 
+  'tpope/vim-unimpaired',
+  'tpope/vim-surround',
+  'christoomey/vim-tmux-navigator',
+  'sindrets/diffview.nvim',
+
   -- Search/replace
   { 'nvim-pack/nvim-spectre', event = 'VeryLazy' },
+
+  -- Useful plugin to show you pending keybinds.
+  { 'folke/which-key.nvim', event = 'VeryLazy', opts = {} },
+
+  -- "gc" to comment visual regions/lines
+  { 'numToStr/Comment.nvim', opts = {} },
+
+  {
+    'rmagatti/auto-session',
+    opts = { auto_session_use_git_branch = true, auto_save_enabled = false },
+  },
+
+  {
+    'stevearc/oil.nvim',
+    opts = {},
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
+  },
 
   -- NOTE: This is where your plugins related to LSP can be installed.
   --  The configuration is done below. Search for lspconfig to find it below.
@@ -73,8 +93,6 @@ require('lazy').setup {
     },
   },
 
-  -- Useful plugin to show you pending keybinds.
-  { 'folke/which-key.nvim', event = 'VeryLazy', opts = {} },
   {
     -- Adds git related signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
@@ -151,20 +169,6 @@ require('lazy').setup {
   },
 
   {
-    -- Theme inspired by Atom
-    'navarasu/onedark.nvim',
-    priority = 1000,
-    lazy = false,
-    config = function()
-      require('onedark').setup {
-        -- Set a style preset. 'dark' is default.
-        style = 'dark', -- dark, darker, cool, deep, warm, warmer, light
-      }
-      require('onedark').load()
-    end,
-  },
-
-  {
     -- Set lualine as statusline
     'nvim-lualine/lualine.nvim',
     -- See `:help lualine.txt`
@@ -182,6 +186,7 @@ require('lazy').setup {
       },
     },
   },
+
   {
     -- Add indentation guides even on blank lines
     'lukas-reineke/indent-blankline.nvim',
@@ -190,8 +195,6 @@ require('lazy').setup {
     main = 'ibl',
     opts = {},
   },
-  -- "gc" to comment visual regions/lines
-  { 'numToStr/Comment.nvim', opts = {} },
 
   -- Fuzzy Finder (files, lsp, etc)
   {
@@ -226,9 +229,7 @@ require('lazy').setup {
     build = ':TSUpdate',
   },
 
-  'tpope/vim-unimpaired',
-  'tpope/vim-surround',
-  { 'navarasu/onedark.nvim', event = 'VeryLazy' },
+  -- [[ Colorschemes ]]
   {
     'catppuccin/nvim',
     lazy = false, -- make sure we load this during startup if it is your main colorscheme
@@ -236,18 +237,27 @@ require('lazy').setup {
   },
   'nvim-treesitter/nvim-treesitter-context',
   { 'folke/tokyonight.nvim', event = 'VeryLazy' },
-  'christoomey/vim-tmux-navigator',
-  'sindrets/diffview.nvim',
   {
-    'rmagatti/auto-session',
-    opts = { auto_session_use_git_branch = true, auto_save_enabled = false },
+    -- Theme inspired by Atom
+    'navarasu/onedark.nvim',
+    priority = 1000,
+    lazy = false,
+    config = function()
+      require('onedark').setup {
+        -- Set a style preset. 'dark' is default.
+        style = 'dark', -- dark, darker, cool, deep, warm, warmer, light
+      }
+      require('onedark').load()
+    end,
   },
+
   {
     'windwp/nvim-autopairs',
     event = 'InsertEnter',
     name = 'autopairs',
     config = true,
   },
+
   {
     'akinsho/bufferline.nvim',
     name = 'bufferline',
@@ -260,6 +270,7 @@ require('lazy').setup {
       },
     },
   },
+
   {
     'Exafunction/codeium.nvim',
     event = 'VeryLazy',
@@ -271,6 +282,7 @@ require('lazy').setup {
       require('codeium').setup {}
     end,
   },
+
   {
     'stevearc/conform.nvim',
     opts = {
@@ -292,6 +304,7 @@ require('lazy').setup {
       },
     },
   },
+
   {
     'ThePrimeagen/harpoon',
     event = 'VeryLazy',
@@ -307,6 +320,7 @@ require('lazy').setup {
       }
     end,
   },
+
   {
     'nvim-neo-tree/neo-tree.nvim',
     event = 'VeryLazy',
@@ -324,15 +338,7 @@ require('lazy').setup {
       }
     end,
   },
-  {
-    'stevearc/oil.nvim',
-    opts = {},
-    dependencies = { 'nvim-tree/nvim-web-devicons' },
-  },
-  {
-    'folke/trouble.nvim',
-    dependencies = { 'nvim-tree/nvim-web-devicons' },
-  },
+
   -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
   --       These are some example plugins that I've included in the kickstart repository.
   --       Uncomment any of the lines below to enable them.
