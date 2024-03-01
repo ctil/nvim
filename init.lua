@@ -3,7 +3,7 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
 require 'lazy-bootstrap'
-require 'lazy-plugins'
+require 'plugins'
 require 'options'
 require 'keymaps'
 require 'telescope-setup'
