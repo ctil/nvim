@@ -244,7 +244,9 @@ require('lazy').setup {
   },
   {
     'windwp/nvim-autopairs',
+    event = 'InsertEnter',
     name = 'autopairs',
+    config = true,
   },
   {
     'akinsho/bufferline.nvim',
