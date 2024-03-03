@@ -5,6 +5,7 @@
 --  You can also configure plugins after the setup call,
 --    as they will be available in your neovim runtime.
 require('lazy').setup {
+
   -- Git related plugins
   'tpope/vim-fugitive',
   'tpope/vim-rhubarb',
@@ -251,12 +252,12 @@ require('lazy').setup {
     end,
   },
 
-  {
-    'windwp/nvim-autopairs',
-    event = 'InsertEnter',
-    name = 'autopairs',
-    config = true,
-  },
+  -- {
+  --   'windwp/nvim-autopairs',
+  --   event = 'InsertEnter',
+  --   name = 'autopairs',
+  --   config = true,
+  -- },
 
   {
     'akinsho/bufferline.nvim',
