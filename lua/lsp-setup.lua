@@ -72,7 +72,7 @@ local servers = {
   emmet_language_server = {
     filetypes = { 'vue' },
   },
-  volar = {
+  ['volar@1.8.27'] = {
     -- Takeover mode
     filetypes = { 'typescript', 'javascript', 'vue', 'json' },
     typescript = {

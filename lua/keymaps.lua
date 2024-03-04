@@ -110,12 +110,12 @@ vim.keymap.set('n', '<leader>S', require('spectre').toggle, { desc = 'Toggle Spe
 -- Unimpaired style keymaps
 -- vim.keymap.set('n', ']e', ':BaconLoad<CR>:w<CR>:BaconNext<CR>', { desc = 'Next bacon error' })
 -- vim.keymap.set('n', '[e', '::BaconPrevious<CR>', { desc = 'Previous bacon error' })
-vim.keymap.set('n', ']t', function()
-  require('trouble').next { skip_groups = true, jump = true }
-end, { desc = 'Next Trouble Item' })
-vim.keymap.set('n', '[t', function()
-  require('trouble').previous { skip_groups = true, jump = true }
-end, { desc = 'Previous Trouble Item' })
+-- vim.keymap.set('n', ']t', function()
+--   require('trouble').next { skip_groups = true, jump = true }
+-- end, { desc = 'Next Trouble Item' })
+-- vim.keymap.set('n', '[t', function()
+--   require('trouble').previous { skip_groups = true, jump = true }
+-- end, { desc = 'Previous Trouble Item' })
 
 -- Git keymaps
 vim.keymap.set('n', '<leader>ga', ':0Git commit -a --amend --no-edit<CR>', { desc = 'Amend current commit' })

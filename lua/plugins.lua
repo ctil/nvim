@@ -13,7 +13,9 @@ require('lazy').setup {
   -- Detect tabstop and shiftwidth automatically
   'tpope/vim-sleuth',
 
-  'tpope/vim-unimpaired',
+  -- Trying mini.bracketed instead
+  -- 'tpope/vim-unimpaired',
+
   -- Trying mini.surround instead
   -- 'tpope/vim-surround',
   'christoomey/vim-tmux-navigator',
@@ -113,8 +115,9 @@ require('lazy').setup {
       -- - sr)'  - [S]urround [R]eplace [)] [']
       require('mini.surround').setup()
 
-      -- ... and there is more!
-      --  Check out: https://github.com/echasnovski/mini.nvim
+      -- Unimpaired style keymaps
+      -- ]b for next buffer ]B for last [b for previous buffer, etc.
+      require('mini.bracketed').setup()
     end,
   },
 
