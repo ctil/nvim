@@ -154,6 +154,9 @@ vim.keymap.set('n', '<leader>tq', toggle_quickfix, { desc = 'Toggle Quickfix Win
 
 vim.keymap.set('n', '<leader>x', ':bp | sp | bn | bd<CR>', { desc = 'Delete Buffer' })
 vim.keymap.set('n', '<leader>q', vim.cmd.q, { desc = 'Quit' })
+
+-- Buffer related keymaps
+vim.keymap.set('n', '<leader>bd', vim.cmd.bdelete, { desc = 'Delete Buffer' })
 vim.keymap.set('n', '<leader>bp', vim.cmd.BufferLinePick, { desc = 'Pick buffer' })
 vim.keymap.set('n', '<leader>br', vim.cmd.BufferLineCloseRight, { desc = 'Close buffers to the right' })
 vim.keymap.set('n', '<leader>bl', vim.cmd.BufferLineCloseLeft, { desc = 'Close buffers to the left' })
