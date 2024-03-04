@@ -12,7 +12,7 @@ cmp.setup {
     end,
   },
   completion = {
-    completeopt = 'menu,menuone,noinsert',
+    completeopt = 'menu,menuone,noinsert,noselect',
     -- Disable autocomplete popup menu (this is useful if going all in on Copilot style completion)
     -- autocomplete = false,
   },
@@ -21,6 +21,11 @@ cmp.setup {
     --  This will auto-import if your LSP supports it.
     --  This will expand snippets if the LSP sent a snippet.
     ['<C-y>'] = cmp.mapping.confirm { select = true },
+    -- Accept completion with enter
+    ['<CR>'] = cmp.mapping.confirm {
+      behavior = cmp.ConfirmBehavior.Replace,
+      select = false,
+    },
     -- Select the [n]ext item
     ['<C-n>'] = cmp.mapping.select_next_item(),
     -- Select the [p]revious item
@@ -59,12 +64,6 @@ cmp.setup {
     --   select = false,
     -- },
     --
-
-    -- Accept completion with enter
-    -- ['<CR>'] = cmp.mapping.confirm {
-    --   behavior = cmp.ConfirmBehavior.Replace,
-    --   select = false,
-    -- },
   },
   sources = {
     { name = 'codeium' },
