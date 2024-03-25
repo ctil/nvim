@@ -21,6 +21,24 @@ require('lazy').setup {
   'christoomey/vim-tmux-navigator',
   'sindrets/diffview.nvim',
 
+  -- Pretty display for conflict markers
+  {
+    'akinsho/git-conflict.nvim',
+    version = '*',
+    config = function()
+      require('git-conflict').setup {
+        default_mappings = {
+          ours = '<leader>go',
+          theirs = '<leader>gt',
+          none = '<leader>g0',
+          both = '<leader>ga',
+          next = ']x',
+          prev = '[x',
+        },
+      }
+    end,
+  },
+
   -- Search/replace
   { 'nvim-pack/nvim-spectre', event = 'VeryLazy' },
 
