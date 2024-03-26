@@ -337,6 +337,7 @@ require('lazy').setup {
         python = { 'isort', 'black' },
         javascript = { 'prettier' },
         vue = { 'prettier' },
+        json = { 'prettier' },
         typescript = { 'prettier' },
         -- Use the "_" filetype to run formatters on filetypes that don't
         -- have other formatters configured.

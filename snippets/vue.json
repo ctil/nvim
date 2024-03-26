@@ -1,24 +1,32 @@
 {
-    "Vue Component": {
-        "prefix": "vue",
-        "body": [
-            "<script setup lang=\"ts\">",
-            "$0",
-            "</script>",
-            "",
-            "<template>",
-            "</template>",
-            "",
-            "<style scoped lang=\"scss\">",
-            "</style>"
-        ],
-        "description": "Vue Composition API Component"
-    },
-    "Font Awesome": {
-        "prefix": "fa",
-        "body": [
-            "import { $0 } from \"@fortawesome/pro-solid-svg-icons\";"
-        ],
-        "description": "Font Awesome Import"
-    }
+  "Vue Component": {
+    "prefix": "vue",
+    "body": [
+      "<script setup lang=\"ts\">",
+      "$0",
+      "</script>",
+      "",
+      "<template>",
+      "</template>",
+      "",
+      "<style scoped lang=\"scss\">",
+      "</style>"
+    ],
+    "description": "Vue Composition API Component"
+  },
+  "Font Awesome": {
+    "prefix": "fa",
+    "body": ["import { $0 } from \"@fortawesome/pro-solid-svg-icons\";"],
+    "description": "Font Awesome Import"
+  },
+  "Import": {
+    "prefix": "import",
+    "body": ["import { $1 } from '$2'"],
+    "description": "import ... from ..."
+  },
+  "Import Component": {
+    "prefix": "import-comp",
+    "body": ["import $1 from '@/components/$2.vue';"],
+    "description": "Import Component"
+  }
 }

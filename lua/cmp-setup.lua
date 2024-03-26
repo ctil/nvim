@@ -4,7 +4,8 @@ local cmp = require 'cmp'
 local luasnip = require 'luasnip'
 
 local loader = require 'luasnip.loaders.from_vscode'
-loader.lazy_load()
+-- Only include rust snippets from friendly-snippets
+loader.lazy_load { include = 'rust' }
 loader.lazy_load { paths = { './snippets' } }
 
 luasnip.config.setup {}
@@ -70,9 +71,9 @@ cmp.setup {
     --
   },
   sources = {
-    { name = 'codeium' },
     { name = 'nvim_lsp' },
     { name = 'luasnip' },
+    { name = 'codeium' },
     { name = 'buffer' },
     { name = 'nvim_lsp_signature_help' },
     { name = 'path' },

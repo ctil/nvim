@@ -69,6 +69,7 @@ require('mason-lspconfig').setup()
 local servers = {
   -- gopls = {},
   -- pyright = {},
+  jsonls = {},
   emmet_language_server = {
     filetypes = { 'vue' },
   },
