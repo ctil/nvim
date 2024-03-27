@@ -22,11 +22,13 @@
   "useQuery": {
     "prefix": "useQuery",
     "body": [
-      "const { result, refetch } = useQuery(",
-      "\tgql`",
-      "\t\tquery $1",
-      "\t`,",
-      "\tcomputed(() => ({$0})),",
+      "const { result, refetch } = useQuery<api.$1_${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/}>(",
+      "  gql`",
+      "    query $1_${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/}() {",
+      "      $0",
+      "    }",
+      "`,",
+      "  computed(() => ({})),",
       ");"
     ],
     "description": "An apollo query"
