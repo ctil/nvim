@@ -9,8 +9,7 @@
       "<template>",
       "</template>",
       "",
-      "<style scoped lang=\"scss\">",
-      "</style>"
+      "<style scoped lang=\"scss\"></style>"
     ],
     "description": "Vue Composition API Component"
   },
@@ -34,13 +33,13 @@
     "description": "An apollo query"
   },
   "import": {
-    "prefix": "import",
-    "body": ["import { $1 } from '$2'"],
+    "prefix": "imp",
+    "body": ["import { $1 } from \"$2\""],
     "description": "import ... from ..."
   },
   "import component": {
-    "prefix": "import-comp",
-    "body": ["import $1 from '@/components/$2.vue';"],
+    "prefix": "imp-comp",
+    "body": ["import $1 from \"components/$2.vue\";"],
     "description": "Import Component"
   },
   "defineProps-TS": {
