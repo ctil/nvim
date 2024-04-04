@@ -9,7 +9,9 @@
       "<template>",
       "</template>",
       "",
-      "<style scoped lang=\"scss\"></style>"
+      "<style scoped lang=\"scss\">",
+      "@import \"@/styles/variables.scss\";",
+      "</style>"
     ],
     "description": "Vue Composition API Component"
   },
@@ -39,7 +41,7 @@
   },
   "import component": {
     "prefix": "imp-comp",
-    "body": ["import $1 from \"components/$2.vue\";"],
+    "body": ["import $1 from \"@/components/$2.vue\";"],
     "description": "Import Component"
   },
   "defineProps-TS": {
