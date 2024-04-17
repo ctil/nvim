@@ -22,6 +22,7 @@ cmp.setup {
     -- Disable autocomplete popup menu (this is useful if going all in on Copilot style completion)
     -- autocomplete = false,
   },
+  experimental = { ghost_text = false },
   mapping = cmp.mapping.preset.insert {
     -- Accept ([y]es) the completion.
     --  This will auto-import if your LSP supports it.

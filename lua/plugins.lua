@@ -111,8 +111,18 @@ require('lazy').setup {
       'hrsh7th/cmp-nvim-lsp-signature-help',
 
       -- Codeium AI completions
-      'Exafunction/codeium.nvim',
+      -- 'Exafunction/codeium.nvim',
     },
+  },
+  {
+    'Exafunction/codeium.nvim',
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      'hrsh7th/nvim-cmp',
+    },
+    config = function()
+      require('codeium').setup {}
+    end,
   },
 
   { -- Collection of various small independent plugins/modules
