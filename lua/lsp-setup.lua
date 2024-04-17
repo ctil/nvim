@@ -58,6 +58,9 @@ require('which-key').register({
 require('mason').setup()
 require('mason-lspconfig').setup()
 
+local mason_registry = require 'mason-registry'
+local vue_language_server_path = mason_registry.get_package('vue-language-server'):get_install_path() .. '/node_modules/@vue/language-server'
+
 -- Enable the following language servers
 --  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
 --
@@ -73,12 +76,11 @@ local servers = {
   emmet_language_server = {
     filetypes = { 'vue' },
   },
-  ['volar@1.8.27'] = {
-    -- Takeover mode
-    filetypes = { 'typescript', 'javascript', 'vue', 'json' },
-    typescript = {
-      tsdk = vim.fn.getcwd() .. '/node_modules/typescript/lib',
-    },
+  volar = {
+    -- filetypes = { 'typescript', 'javascript', 'vue', 'json' },
+    -- typescript = {
+    --   tsdk = vim.fn.getcwd() .. '/node_modules/typescript/lib',
+    -- },
   },
   rust_analyzer = {
     ['rust-analyzer'] = {
@@ -89,7 +91,18 @@ local servers = {
       },
     },
   },
-  -- tsserver = {},
+  tsserver = {
+    init_options = {
+      plugins = {
+        {
+          name = '@vue/typescript-plugin',
+          location = vue_language_server_path,
+          languages = { 'vue' },
+        },
+      },
+    },
+    filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
+  },
   -- html = { filetypes = { 'html', 'twig', 'hbs'} },
 
   lua_ls = {
@@ -123,6 +136,7 @@ mason_lspconfig.setup_handlers {
       on_attach = on_attach,
       settings = servers[server_name],
       filetypes = (servers[server_name] or {}).filetypes,
+      init_options = (servers[server_name] or {}).init_options,
     }
   end,
 }
