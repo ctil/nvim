@@ -339,6 +339,7 @@ require('lazy').setup {
         vue = { 'prettier' },
         json = { 'prettier' },
         typescript = { 'prettier' },
+        scss = { 'trim_whitespace' },
         -- Use the "_" filetype to run formatters on filetypes that don't
         -- have other formatters configured.
         ['_'] = { 'trim_whitespace' },
