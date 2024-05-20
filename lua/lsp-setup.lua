@@ -72,6 +72,7 @@ local vue_language_server_path = mason_registry.get_package('vue-language-server
 local servers = {
   -- gopls = {},
   -- pyright = {},
+  eslint = {},
   jsonls = {},
   emmet_language_server = {
     filetypes = { 'vue' },

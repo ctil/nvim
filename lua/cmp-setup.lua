@@ -17,6 +17,7 @@ cmp.setup {
       luasnip.lsp_expand(args.body)
     end,
   },
+  window = { width = 60 },
   completion = {
     completeopt = 'menu,menuone,noinsert,noselect',
     -- Disable autocomplete popup menu (this is useful if going all in on Copilot style completion)
