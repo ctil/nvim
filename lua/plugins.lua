@@ -21,6 +21,9 @@ require('lazy').setup {
   'christoomey/vim-tmux-navigator',
   'sindrets/diffview.nvim',
 
+  -- Better quickfix
+  { 'kevinhwang91/nvim-bqf' },
+
   -- Pretty display for conflict markers
   {
     'akinsho/git-conflict.nvim',
