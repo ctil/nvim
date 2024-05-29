@@ -19,7 +19,12 @@ require('lazy').setup {
   -- Trying mini.surround instead
   -- 'tpope/vim-surround',
   'christoomey/vim-tmux-navigator',
+
+  -- View diffs
   'sindrets/diffview.nvim',
+
+  -- Show the context of the current scope/function/etc.
+  'nvim-treesitter/nvim-treesitter-context',
 
   -- Better quickfix
   { 'kevinhwang91/nvim-bqf' },
@@ -49,7 +54,8 @@ require('lazy').setup {
   { 'folke/which-key.nvim', event = 'VeryLazy', opts = {} },
 
   -- "gc" to comment visual regions/lines
-  { 'numToStr/Comment.nvim', opts = {} },
+  -- NOTE: this functionality was added in nvim 0.10
+  -- { 'numToStr/Comment.nvim', opts = {} },
 
   {
     'rmagatti/auto-session',
@@ -293,7 +299,6 @@ require('lazy').setup {
     lazy = false, -- make sure we load this during startup if it is your main colorscheme
     priority = 1000, -- make sure to load this before all the other start plugins
   },
-  'nvim-treesitter/nvim-treesitter-context',
   { 'folke/tokyonight.nvim', event = 'VeryLazy' },
   {
     -- Theme inspired by Atom
