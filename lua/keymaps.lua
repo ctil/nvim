@@ -1,19 +1,18 @@
 -- Whickkey prefixes
 local wk = require 'which-key'
 local mappings = {
-  b = { name = 'buffer' },
-  c = { name = 'copy' },
-  f = { name = 'find' },
-  g = { name = 'git' },
-  h = { name = 'harpoon' },
-  j = { name = 'jump' },
-  l = { name = 'lsp' },
-  o = { name = 'open' },
-  s = { name = 'session' },
-  t = { name = 'toggle' },
-  w = { name = 'workspace' },
+  { '<leader>b', group = 'buffer' },
+  { '<leader>c', group = 'copy' },
+  { '<leader>f', group = 'find' },
+  { '<leader>g', group = 'git' },
+  { '<leader>h', group = 'harpoon' },
+  { '<leader>j', group = 'jump' },
+  { '<leader>l', group = 'lsp' },
+  { '<leader>o', group = 'open' },
+  { '<leader>s', group = 'session' },
+  { '<leader>t', group = 'toggle' },
 }
-wk.register(mappings, { prefix = '<leader>' })
+wk.add(mappings)
 
 -- [[ Basic Keymaps ]]
 

@@ -43,15 +43,12 @@ local on_attach = function(_, bufnr)
 end
 
 -- document existing key chains
-require('which-key').register {
-  ['<leader>w'] = { name = '[W]orkspace', _ = 'which_key_ignore' },
-}
 -- register which-key VISUAL mode
 -- required for visual <leader>hs (hunk stage) to work
-require('which-key').register({
-  ['<leader>'] = { name = 'VISUAL <leader>' },
-  ['<leader>h'] = { 'Git [H]unk' },
-}, { mode = 'v' })
+require('which-key').add {
+  { '<leader>', group = 'VISUAL <leader>', mode = 'v' },
+  { '<leader>h', desc = 'Git [H]unk', mode = 'v' },
+}
 
 -- mason-lspconfig requires that these setup functions are called in this order
 -- before setting up the servers.
