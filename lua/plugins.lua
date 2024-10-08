@@ -338,6 +338,7 @@ require('lazy').setup {
   {
     'Exafunction/codeium.nvim',
     event = 'VeryLazy',
+    commit = '937667b',
     dependencies = {
       'nvim-lua/plenary.nvim',
       'hrsh7th/nvim-cmp',

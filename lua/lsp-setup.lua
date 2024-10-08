@@ -57,6 +57,7 @@ require('mason-lspconfig').setup()
 
 local mason_registry = require 'mason-registry'
 local vue_language_server_path = mason_registry.get_package('vue-language-server'):get_install_path() .. '/node_modules/@vue/language-server'
+local typescript_sdk_path = vim.fn.getcwd() .. '/portals/management/node_modules/typescript/lib'
 
 -- Enable the following language servers
 --  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
@@ -75,10 +76,11 @@ local servers = {
     filetypes = { 'vue' },
   },
   volar = {
-    -- filetypes = { 'typescript', 'javascript', 'vue', 'json' },
-    -- typescript = {
-    --   tsdk = vim.fn.getcwd() .. '/node_modules/typescript/lib',
-    -- },
+    init_options = {
+      vue = {
+        hybridMode = false,
+      },
+    },
   },
   rust_analyzer = {
     ['rust-analyzer'] = {
@@ -98,6 +100,7 @@ local servers = {
           languages = { 'vue', 'typescript' },
         },
       },
+      typescript = { tsdk = typescript_sdk_path },
     },
     filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
   },
