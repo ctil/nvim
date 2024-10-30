@@ -123,16 +123,6 @@ require('lazy').setup {
       -- 'Exafunction/codeium.nvim',
     },
   },
-  {
-    'Exafunction/codeium.nvim',
-    dependencies = {
-      'nvim-lua/plenary.nvim',
-      'hrsh7th/nvim-cmp',
-    },
-    config = function()
-      require('codeium').setup {}
-    end,
-  },
 
   { -- Collection of various small independent plugins/modules
     'echasnovski/mini.nvim',
@@ -336,18 +326,22 @@ require('lazy').setup {
   },
 
   {
-    'Exafunction/codeium.nvim',
-    event = 'VeryLazy',
-    commit = '937667b',
-    dependencies = {
-      'nvim-lua/plenary.nvim',
-      'hrsh7th/nvim-cmp',
-    },
-    config = function()
-      require('codeium').setup {}
-    end,
+    'github/copilot.vim',
+    event = 'InsertEnter',
   },
 
+  --   'Exafunction/codeium.nvim',
+  --   event = 'VeryLazy',
+  --   commit = '937667b',
+  --   dependencies = {
+  --     'nvim-lua/plenary.nvim',
+  --     'hrsh7th/nvim-cmp',
+  --   },
+  --   config = function()
+  --     require('codeium').setup {}
+  --   end,
+  -- },
+  --
   {
     'stevearc/conform.nvim',
     opts = {

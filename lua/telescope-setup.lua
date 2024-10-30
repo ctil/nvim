@@ -30,6 +30,37 @@ require('telescope').setup {
   },
 }
 
+-- Filter files that are in the quickfix list
+local search_qflist = function(mode)
+  local qflist = vim.fn.getqflist()
+  local filetable = {}
+  local hashlist = {}
+
+  for _, value in pairs(qflist) do
+    local name = vim.api.nvim_buf_get_name(value.bufnr)
+
+    if not hashlist[name] then
+      hashlist[name] = true
+      table.insert(filetable, name)
+    end
+  end
+
+  local args = { search_dirs = filetable }
+  local builtin = require 'telescope.builtin'
+
+  if mode == 'live_grep' then
+    builtin.live_grep(args)
+  elseif mode == 'inverse_live_grep' then
+    args.additional_args = { '--files-without-match' }
+    builtin.live_grep(args)
+  elseif mode == 'find_files' then
+    builtin.find_files(args)
+  else
+    print 'Invalid mode specified'
+  end
+end
+_G.Search_qflist = search_qflist
+
 -- Enable telescope fzf native, if installed
 pcall(require('telescope').load_extension, 'fzf')
 pcall(require('telescope').load_extension, 'live_grep_args')

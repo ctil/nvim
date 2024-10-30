@@ -75,7 +75,8 @@ cmp.setup {
   },
   sources = {
     { name = 'luasnip' },
-    { name = 'codeium' },
+    -- { name = 'copilot' },
+    -- { name = 'codeium' },
     { name = 'nvim_lsp' },
     { name = 'buffer' },
     { name = 'nvim_lsp_signature_help' },

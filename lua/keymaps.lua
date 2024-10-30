@@ -11,6 +11,10 @@ local mappings = {
   { '<leader>o', group = 'open' },
   { '<leader>s', group = 'session' },
   { '<leader>t', group = 'toggle' },
+  { '<leader>fq', group = 'Narrow Quickfix List' },
+  { '<leader>fqf', ":lua Search_qflist('find_files')<CR>", desc = 'Find Files' },
+  { '<leader>fqg', ":lua Search_qflist('live_grep')<CR>", desc = 'Live Grep' },
+  { '<leader>fqi', ":lua Search_qflist('inverse_live_grep')<CR>", desc = 'Inverse Live Grep' },
 }
 wk.add(mappings)
 
@@ -95,7 +99,6 @@ vim.keymap.set('n', '<leader>/', require('telescope').extensions.live_grep_args.
 vim.keymap.set('n', '<leader>fh', require('telescope.builtin').help_tags, { desc = 'Find Help' })
 vim.keymap.set('n', '<leader>fo', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
 vim.keymap.set('n', '<leader>fn', ':Telescope find_files cwd=~/notes<CR>', { desc = 'Find Notes' })
-vim.keymap.set('n', '<leader>fq', require('telescope.builtin').quickfix, { desc = 'Find Quickfix List' })
 vim.keymap.set('n', '<leader>fr', require('telescope.builtin').resume, { desc = 'Find Resume' })
 vim.keymap.set('n', '<leader>fu', require('telescope.builtin').lsp_references, { desc = 'Find Usages/References' })
 vim.keymap.set('n', '<leader>fs', require('telescope.builtin').lsp_document_symbols, { desc = 'Find Document Symbols' })
