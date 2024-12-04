@@ -325,23 +325,24 @@ require('lazy').setup {
     },
   },
 
-  {
-    'github/copilot.vim',
-    event = 'InsertEnter',
-  },
-
-  --   'Exafunction/codeium.nvim',
-  --   event = 'VeryLazy',
-  --   commit = '937667b',
-  --   dependencies = {
-  --     'nvim-lua/plenary.nvim',
-  --     'hrsh7th/nvim-cmp',
-  --   },
-  --   config = function()
-  --     require('codeium').setup {}
-  --   end,
+  -- {
+  --   'github/copilot.vim',
+  --   event = 'InsertEnter',
   -- },
   --
+  {
+    'Exafunction/codeium.nvim',
+    event = 'VeryLazy',
+    -- commit = '937667b',
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      'hrsh7th/nvim-cmp',
+    },
+    config = function()
+      require('codeium').setup {}
+    end,
+  },
+
   {
     'stevearc/conform.nvim',
     opts = {
