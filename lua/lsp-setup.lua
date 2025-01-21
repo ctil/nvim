@@ -100,7 +100,7 @@ local servers = {
           languages = { 'vue', 'typescript' },
         },
       },
-      typescript = { tsdk = typescript_sdk_path },
+      -- typescript = { tsdk = typescript_sdk_path },
     },
     filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
   },
