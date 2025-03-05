@@ -55,7 +55,7 @@ require('lazy').setup {
 
   -- "gc" to comment visual regions/lines
   -- NOTE: this functionality was added in nvim 0.10
-  -- { 'numToStr/Comment.nvim', opts = {} },
+  { 'numToStr/Comment.nvim', opts = {} },
 
   {
     'rmagatti/auto-session',
