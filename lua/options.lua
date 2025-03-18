@@ -6,6 +6,7 @@ vim.wo.number = true
 
 -- Enable mouse mode
 vim.o.mouse = 'a'
+vim.keymap.set('', '<RightMouse>', '<Nop>')
 
 -- Don't show mode since it is in the statusline
 vim.o.showmode = false
