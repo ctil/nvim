@@ -29,8 +29,8 @@ vim.o.smartcase = true
 -- Keep signcolumn on by default
 vim.wo.signcolumn = 'yes'
 
--- Rounded borders around floating windows
-vim.o.winborder = 'rounded'
+-- Rounded borders around floating windows (this looked odd with telescope)
+--vim.o.winborder = 'rounded'
 
 -- Decrease update time
 vim.o.updatetime = 250

@@ -49,8 +49,11 @@ vim.keymap.set('x', '<leader>p', '"_dP')
 -- Open current directory in oil
 vim.keymap.set('n', '-', '<CMD>Oil --float<CR>', { desc = 'Open parent directory' })
 
+-- Open
 vim.keymap.set('n', '<leader>ob', ':Ex<CR>', { desc = 'Open File Browser' })
 vim.keymap.set('n', '<leader>og', ':GBrowse master:%<CR>', { desc = 'Open in GitHub' })
+vim.keymap.set('n', '<leader>ol', ':Lazy<CR>', { desc = 'Open LazyVim' })
+vim.keymap.set('n', '<leader>om', ':Mason<CR>', { desc = 'Open Mason' })
 
 -- Center screen after CTRL-D/U
 vim.keymap.set('n', '<C-d>', '<C-d>zz')
