@@ -85,6 +85,18 @@ require('lazy').setup {
       -- Additional lua configuration, makes nvim stuff amazing!
       'folke/neodev.nvim',
     },
+    config = function()
+      vim.diagnostic.config {
+        virtual_text = {
+          source = 'if_many',
+          prefix = '●',
+        },
+        float = {
+          source = true,
+        },
+        severity_sort = true,
+      }
+    end,
   },
 
   {
