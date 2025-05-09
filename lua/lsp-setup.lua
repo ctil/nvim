@@ -55,8 +55,7 @@ require('which-key').add {
 require('mason').setup()
 require('mason-lspconfig').setup()
 
-local mason_registry = require 'mason-registry'
-local vue_language_server_path = mason_registry.get_package('vue-language-server'):get_install_path() .. '/node_modules/@vue/language-server'
+local vue_language_server_path = vim.fn.expand '$MASON/packages/vue-language-server/node_modules/@vue/language-server'
 local typescript_sdk_path = vim.fn.getcwd() .. '/portals/management/node_modules/typescript/lib'
 
 -- Enable the following language servers
@@ -100,7 +99,7 @@ local servers = {
           languages = { 'vue', 'typescript' },
         },
       },
-      -- typescript = { tsdk = typescript_sdk_path },
+      typescript = { tsdk = typescript_sdk_path },
     },
     filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
   },
@@ -123,21 +122,18 @@ require('neodev').setup()
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
--- Ensure the servers above are installed
-local mason_lspconfig = require 'mason-lspconfig'
-
-mason_lspconfig.setup {
+require('mason-lspconfig').setup {
   ensure_installed = vim.tbl_keys(servers),
-}
-
-mason_lspconfig.setup_handlers {
-  function(server_name)
-    require('lspconfig')[server_name].setup {
-      capabilities = capabilities,
-      on_attach = on_attach,
-      settings = servers[server_name],
-      filetypes = (servers[server_name] or {}).filetypes,
-      init_options = (servers[server_name] or {}).init_options,
-    }
-  end,
+  automatic_installation = true,
+  handlers = {
+    function(server_name)
+      require('lspconfig')[server_name].setup {
+        capabilities = capabilities,
+        on_attach = on_attach,
+        settings = servers[server_name],
+        filetypes = (servers[server_name] or {}).filetypes,
+        init_options = (servers[server_name] or {}).init_options,
+      }
+    end,
+  },
 }
