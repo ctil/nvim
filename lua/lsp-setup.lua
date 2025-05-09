@@ -16,6 +16,7 @@ local on_attach = function(_, bufnr)
   end
 
   nmap('gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
+  -- nmap('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
   nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
   nmap('gI', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
   nmap('<leader>D', require('telescope.builtin').lsp_type_definitions, 'Type [D]efinition')
@@ -125,15 +126,16 @@ capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 require('mason-lspconfig').setup {
   ensure_installed = vim.tbl_keys(servers),
   automatic_installation = true,
-  handlers = {
-    function(server_name)
-      require('lspconfig')[server_name].setup {
-        capabilities = capabilities,
-        on_attach = on_attach,
-        settings = servers[server_name],
-        filetypes = (servers[server_name] or {}).filetypes,
-        init_options = (servers[server_name] or {}).init_options,
-      }
-    end,
-  },
 }
+
+-- Set up individual LSP servers
+local lspconfig = require 'lspconfig'
+for server_name, _ in pairs(servers) do
+  lspconfig[server_name].setup {
+    capabilities = capabilities,
+    on_attach = on_attach,
+    settings = servers[server_name],
+    filetypes = (servers[server_name] or {}).filetypes,
+    init_options = (servers[server_name] or {}).init_options,
+  }
+end
