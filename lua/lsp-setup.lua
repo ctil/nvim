@@ -36,8 +36,8 @@ local on_attach = function(_, bufnr)
   vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
     vim.lsp.buf.format {
       filter = function(client)
-        -- Skip volar's formatting
-        return client.name ~= 'volar'
+        -- Skip vue_ls's formatting
+        return client.name ~= 'vue_ls'
       end,
     }
   end, { desc = 'Format current buffer with LSP' })
@@ -75,7 +75,7 @@ local servers = {
   emmet_language_server = {
     filetypes = { 'vue' },
   },
-  volar = {
+  vue_ls = {
     init_options = {
       vue = {
         hybridMode = false,

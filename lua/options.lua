@@ -30,7 +30,7 @@ vim.o.smartcase = true
 vim.wo.signcolumn = 'yes'
 
 -- Rounded borders around floating windows (this looked odd with telescope)
---vim.o.winborder = 'rounded'
+vim.o.winborder = 'rounded'
 
 -- Decrease update time
 vim.o.updatetime = 250
