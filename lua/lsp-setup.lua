@@ -54,7 +54,6 @@ require('which-key').add {
 -- mason-lspconfig requires that these setup functions are called in this order
 -- before setting up the servers.
 require('mason').setup()
-require('mason-lspconfig').setup()
 
 local vue_language_server_path = vim.fn.expand '$MASON/packages/vue-language-server/node_modules/@vue/language-server'
 local typescript_sdk_path = vim.fn.getcwd() .. '/portals/management/node_modules/typescript/lib'
@@ -126,7 +125,13 @@ capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
 require('mason-lspconfig').setup {
   ensure_installed = vim.tbl_keys(servers),
-  automatic_installation = true,
+  automatic_installation = false,
+  automatic_enable = false,
+  -- automatic_enable = {
+  --   exclude = {
+  --     'rust_analyzer',
+  --   },
+  -- },
 }
 
 -- Set up individual LSP servers
