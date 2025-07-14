@@ -47,8 +47,8 @@ end
 -- register which-key VISUAL mode
 -- required for visual <leader>hs (hunk stage) to work
 require('which-key').add {
-  { '<leader>', group = 'VISUAL <leader>', mode = 'v' },
-  { '<leader>h', desc = 'Git [H]unk', mode = 'v' },
+  { '<leader>',  group = 'VISUAL <leader>', mode = 'v' },
+  { '<leader>h', desc = 'Git [H]unk',       mode = 'v' },
 }
 
 -- mason-lspconfig requires that these setup functions are called in this order
@@ -67,8 +67,8 @@ local typescript_sdk_path = vim.fn.getcwd() .. '/portals/management/node_modules
 --  If you want to override the default filetypes that your language server will attach to you can
 --  define the property 'filetypes' to the map in question.
 local servers = {
-  -- gopls = {},
-  -- pyright = {},
+  gopls = {},
+  pyright = {},
   eslint = {},
   jsonls = {},
   emmet_language_server = {
