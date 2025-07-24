@@ -215,7 +215,7 @@ require('lazy').setup {
             return ']h'
           end
           vim.schedule(function()
-            gs.next_hunk()
+            gs.nav_hunk 'next'
           end)
           return '<Ignore>'
         end, { expr = true, desc = 'Jump to next hunk' })
@@ -225,19 +225,16 @@ require('lazy').setup {
             return '[h'
           end
           vim.schedule(function()
-            gs.prev_hunk()
+            gs.nav_hunk 'prev'
           end)
           return '<Ignore>'
         end, { expr = true, desc = 'Jump to previous hunk' })
 
         -- Actions
         -- visual mode
-        map('v', '<leader>hs', function()
+        map('v', '<leader>ghs', function()
           gs.stage_hunk { vim.fn.line '.', vim.fn.line 'v' }
         end, { desc = 'stage git hunk' })
-        map('v', '<leader>hr', function()
-          gs.reset_hunk { vim.fn.line '.', vim.fn.line 'v' }
-        end, { desc = 'reset git hunk' })
         -- normal mode
         -- map('n', '<leader>hs', gs.stage_hunk, { desc = 'git stage hunk' })
         -- map('n', '<leader>hr', gs.reset_hunk, { desc = 'git reset hunk' })
@@ -254,8 +251,8 @@ require('lazy').setup {
         end, { desc = 'git diff against last commit' })
 
         -- Toggles
-        map('n', '<leader>tb', gs.toggle_current_line_blame, { desc = 'toggle git blame line' })
-        map('n', '<leader>td', gs.toggle_deleted, { desc = 'toggle git show deleted' })
+        map('n', '<leader>tgb', gs.toggle_current_line_blame, { desc = 'Toggle git blame line' })
+        map('n', '<leader>tgi', gs.preview_hunk_inline, { desc = 'Toggle git inline diff' })
 
         -- Text object
         map({ 'o', 'x' }, 'ih', ':<C-U>Gitsigns select_hunk<CR>', { desc = 'select git hunk' })
