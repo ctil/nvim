@@ -35,10 +35,10 @@ local on_attach = function(_, bufnr)
   -- Create a command `:Format` local to the LSP buffer
   vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
     vim.lsp.buf.format {
-      filter = function(client)
-        -- Skip vue_ls's formatting
-        return client.name ~= 'vue_ls'
-      end,
+      -- filter = function(client)
+      --   -- Skip vue_ls's formatting
+      --   return client.name ~= 'vue_ls'
+      -- end,
     }
   end, { desc = 'Format current buffer with LSP' })
 end
@@ -47,16 +47,68 @@ end
 -- register which-key VISUAL mode
 -- required for visual <leader>hs (hunk stage) to work
 require('which-key').add {
-  { '<leader>',  group = 'VISUAL <leader>', mode = 'v' },
-  { '<leader>h', desc = 'Git [H]unk',       mode = 'v' },
+  { '<leader>', group = 'VISUAL <leader>', mode = 'v' },
+  { '<leader>h', desc = 'Git [H]unk', mode = 'v' },
 }
 
 -- mason-lspconfig requires that these setup functions are called in this order
 -- before setting up the servers.
 require('mason').setup()
 
-local vue_language_server_path = vim.fn.expand '$MASON/packages/vue-language-server/node_modules/@vue/language-server'
-local typescript_sdk_path = vim.fn.getcwd() .. '/portals/management/node_modules/typescript/lib'
+-- local vue_language_server_path = vim.fn.expand '$MASON/packages/vue-language-server/node_modules/@vue/language-server'
+-- local typescript_sdk_path = vim.fn.getcwd() .. '/portals/management/node_modules/typescript/lib'
+local vue_language_server_path = vim.fn.stdpath 'data' .. '/mason/packages/vue-language-server/node_modules/@vue/language-server'
+
+local vue_plugin = {
+  name = '@vue/typescript-plugin',
+  location = vue_language_server_path,
+  languages = { 'vue' },
+  configNamespace = 'typescript',
+}
+local vtsls_config = {
+  settings = {
+    vtsls = {
+      tsserver = {
+        globalPlugins = {
+          vue_plugin,
+        },
+      },
+    },
+  },
+  filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
+}
+
+local vue_ls_config = {
+  on_init = function(client)
+    client.handlers['tsserver/request'] = function(_, result, context)
+      local clients = vim.lsp.get_clients { bufnr = context.bufnr, name = 'vtsls' }
+      if #clients == 0 then
+        vim.notify('Could not found `vtsls` lsp client, vue_lsp would not work without it.', vim.log.levels.ERROR)
+        return
+      end
+      local ts_client = clients[1]
+
+      local param = unpack(result)
+      local id, command, payload = unpack(param)
+      ts_client:exec_cmd({
+        title = 'vue_request_forward', -- You can give title anything as it's used to represent a command in the UI, `:h Client:exec_cmd`
+        command = 'typescript.tsserverRequest',
+        arguments = {
+          command,
+          payload,
+        },
+      }, { bufnr = context.bufnr }, function(_, r)
+        local response_data = { { id, r.body } }
+        ---@diagnostic disable-next-line: param-type-mismatch
+        client:notify('tsserver/response', response_data)
+      end)
+    end
+  end,
+}
+-- nvim 0.11 or above
+vim.lsp.config('vtsls', vtsls_config)
+vim.lsp.config('vue_ls', vue_ls_config)
+vim.lsp.enable { 'vtsls', 'vue_ls' }
 
 -- Enable the following language servers
 --  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
@@ -74,13 +126,13 @@ local servers = {
   emmet_language_server = {
     filetypes = { 'vue' },
   },
-  vue_ls = {
-    init_options = {
-      vue = {
-        hybridMode = false,
-      },
-    },
-  },
+  -- vue_ls = {
+  --   init_options = {
+  --     vue = {
+  --       hybridMode = false,
+  --     },
+  --   },
+  -- },
   rust_analyzer = {
     ['rust-analyzer'] = {
       checkOnSave = {
@@ -90,19 +142,19 @@ local servers = {
       },
     },
   },
-  ts_ls = {
-    init_options = {
-      plugins = {
-        {
-          name = '@vue/typescript-plugin',
-          location = vue_language_server_path,
-          languages = { 'vue', 'typescript' },
-        },
-      },
-      typescript = { tsdk = typescript_sdk_path },
-    },
-    filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
-  },
+  -- ts_ls = {
+  --   init_options = {
+  --     plugins = {
+  --       {
+  --         name = '@vue/typescript-plugin',
+  --         location = vue_language_server_path,
+  --         languages = { 'vue', 'typescript' },
+  --       },
+  --     },
+  --     typescript = { tsdk = typescript_sdk_path },
+  --   },
+  --   filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
+  -- },
   -- html = { filetypes = { 'html', 'twig', 'hbs'} },
 
   lua_ls = {
