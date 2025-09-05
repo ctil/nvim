@@ -42,9 +42,9 @@ vim.keymap.set('i', 'jk', '<esc>')
 vim.keymap.set('i', 'kj', '<esc>')
 vim.keymap.set('n', '<leader>d', ":lua vim.diagnostic.open_float({ border = 'rounded' })<CR>", { desc = 'Show diagnostic' })
 vim.keymap.set('n', '<leader>v', vim.cmd.vsplit, { desc = 'Open a vertical split' })
-vim.keymap.set('n', '<leader><space>', ':wall<CR>:SessionSave<CR>', { desc = 'Save' })
+vim.keymap.set('n', '<leader><space>', ':wall<CR>:AutoSession save<CR>', { desc = 'Save' })
 vim.keymap.set('n', '<leader>p', '<C-^>', { desc = 'Goto previous buffer' })
-vim.keymap.set('n', '<leader>cf', ':let @+ = expand("%")<CR>', { desc = 'Copy filename' })
+vim.keymap.set('n', '<leader>cf', ':let @+ = expand("%:.")<CR>', { desc = 'Copy filename' })
 vim.keymap.set('n', '<leader>ca', 'ggyG', { desc = 'Copy All File Contents' })
 vim.keymap.set('n', 'gh', vim.lsp.buf.signature_help, { desc = 'Signature Documentation' })
 -- When in visual mode, use this mapping to keep what is in your paste buffer
@@ -128,7 +128,7 @@ vim.keymap.set('n', '<leader>S', require('spectre').toggle, { desc = 'Toggle Spe
 -- Git keymaps
 vim.keymap.set('n', '<leader>ga', ':0Git commit -a --amend --no-edit<CR>', { desc = 'Amend current commit' })
 vim.keymap.set('n', '<leader>gb', require('gitsigns').blame_line, { desc = 'Git Blame' })
-vim.keymap.set('n', '<leader>gd', ':DiffviewOpen master...HEAD<CR>', { desc = 'Diff all files against master' })
+vim.keymap.set('n', '<leader>gd', ':DiffviewOpen master<CR>', { desc = 'Diff all files against master' })
 vim.keymap.set('n', '<leader>gx', vim.cmd.DiffviewClose, { desc = 'Close diff view' })
 vim.keymap.set('n', '<leader>gg', ':0Git ', { desc = 'Open Git Command' })
 vim.keymap.set('n', '<leader>gh', require('gitsigns').preview_hunk, { desc = 'Git Preview Hunk' })
@@ -187,7 +187,6 @@ vim.keymap.set('n', '<leader>jc', '/<style<CR>zz', { desc = 'Jump to css/style' 
 -- Session management
 vim.keymap.set('n', '<leader>sd', '<cmd>!rm ~/.local/share/nvim/sessions/* && rm ~/.local/share/nvim/harpoon.json<CR>', { desc = 'Delete All Sessions' })
 vim.keymap.set('n', '<leader>sr', ':%bd!<CR>:SessionRestore<CR>', { desc = 'Restore Session' })
-vim.keymap.set('n', '<leader>ss', vim.cmd.SessionSave, { desc = 'Save Session' })
 
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
