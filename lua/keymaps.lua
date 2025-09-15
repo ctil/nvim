@@ -186,7 +186,7 @@ vim.keymap.set('n', '<leader>jc', '/<style<CR>zz', { desc = 'Jump to css/style' 
 
 -- Session management
 vim.keymap.set('n', '<leader>sd', '<cmd>!rm ~/.local/share/nvim/sessions/* && rm ~/.local/share/nvim/harpoon.json<CR>', { desc = 'Delete All Sessions' })
-vim.keymap.set('n', '<leader>sr', ':%bd!<CR>:SessionRestore<CR>', { desc = 'Restore Session' })
+vim.keymap.set('n', '<leader>sr', ':%bd!<CR>:AutoSession restore<CR>', { desc = 'Restore Session' })
 
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`

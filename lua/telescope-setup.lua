@@ -110,7 +110,7 @@ local function pick_branch()
         vim.cmd '%bd!'
 
         -- Restore session
-        vim.cmd 'SessionRestore'
+        vim.cmd 'AutoSession restore'
       end)
       return true
     end,
