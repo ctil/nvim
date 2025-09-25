@@ -186,14 +186,16 @@ require('mason-lspconfig').setup {
   -- },
 }
 
--- Set up individual LSP servers
-local lspconfig = require 'lspconfig'
-for server_name, _ in pairs(servers) do
-  lspconfig[server_name].setup {
+-- Set up individual LSP servers using new vim.lsp.config API
+for server_name, server_config in pairs(servers) do
+  vim.lsp.config(server_name, {
     capabilities = capabilities,
     on_attach = on_attach,
-    settings = servers[server_name],
-    filetypes = (servers[server_name] or {}).filetypes,
-    init_options = (servers[server_name] or {}).init_options,
-  }
+    settings = server_config,
+    filetypes = server_config.filetypes,
+    init_options = server_config.init_options,
+  })
 end
+
+-- Enable all configured LSP servers
+vim.lsp.enable(vim.tbl_keys(servers))
