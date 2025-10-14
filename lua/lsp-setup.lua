@@ -137,7 +137,7 @@ local servers = {
     ['rust-analyzer'] = {
       checkOnSave = {
         command = 'clippy',
-        enable = true,
+        enable = false,
         extraArgs = { '--target-dir', './rust-analyzer-target' },
       },
     },
