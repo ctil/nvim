@@ -171,6 +171,18 @@ vim.keymap.set('n', '<leader>br', vim.cmd.BufferLineCloseRight, { desc = 'Close 
 vim.keymap.set('n', '<leader>bl', vim.cmd.BufferLineCloseLeft, { desc = 'Close buffers to the left' })
 vim.keymap.set('n', '<leader>bo', vim.cmd.BufferLineCloseOthers, { desc = 'Close other buffers' })
 
+-- LSP
+local function ra_flycheck()
+  local clients = vim.lsp.get_clients {
+    name = 'rust_analyzer',
+  }
+  for _, client in ipairs(clients) do
+    local params = vim.lsp.util.make_text_document_params()
+    client.notify('rust-analyzer/runFlycheck', params)
+  end
+end
+vim.keymap.set({ 'n' }, '<leader>lc', ra_flycheck, { desc = 'Run rust-analyzer checks' })
+
 vim.keymap.set('n', '<leader>lr', vim.lsp.buf.rename, { desc = 'Lsp Rename' })
 vim.keymap.set('n', '<leader>ls', ':LspRestart<CR>', { desc = 'Lsp Sync/Restart' })
 vim.keymap.set('n', '<leader>lx', ':LspStop<CR>', { desc = 'Lsp Stop' })
