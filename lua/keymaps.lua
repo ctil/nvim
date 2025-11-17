@@ -81,16 +81,11 @@ vim.keymap.set('n', 'J', 'mzJ`z')
 
 -- Harpoon
 vim.keymap.set('n', '<leader>hh', require('harpoon.ui').toggle_quick_menu, { desc = 'Open harpoon menu' })
-vim.keymap.set('n', '<Tab>h', require('harpoon.ui').toggle_quick_menu, { desc = 'Open harpoon menu' })
 vim.keymap.set('n', '<leader>ha', require('harpoon.mark').add_file, { desc = 'Add harpoon mark' })
 vim.keymap.set('n', '<leader>hj', ':lua require("harpoon.ui").nav_file(1)<CR>', { desc = 'Navigate to harpoon file 1' })
-vim.keymap.set('n', '<Tab>j', ':lua require("harpoon.ui").nav_file(1)<CR>', { desc = 'Navigate to harpoon file 1' })
 vim.keymap.set('n', '<leader>hk', ':lua require("harpoon.ui").nav_file(2)<CR>', { desc = 'Navigate to harpoon file 2' })
-vim.keymap.set('n', '<Tab>k', ':lua require("harpoon.ui").nav_file(2)<CR>', { desc = 'Navigate to harpoon file 2' })
 vim.keymap.set('n', '<leader>hl', ':lua require("harpoon.ui").nav_file(3)<CR>', { desc = 'Navigate to harpoon file 3' })
-vim.keymap.set('n', '<Tab>l', ':lua require("harpoon.ui").nav_file(3)<CR>', { desc = 'Navigate to harpoon file 3' })
 vim.keymap.set('n', '<leader>h;', ':lua require("harpoon.ui").nav_file(4)<CR>', { desc = 'Navigate to harpoon file 4' })
-vim.keymap.set('n', '<Tab>;', ':lua require("harpoon.ui").nav_file(4)<CR>', { desc = 'Navigate to harpoon file 4' })
 vim.keymap.set('n', '<leader>hn', require('harpoon.ui').nav_next, { desc = 'Navigate to next harpoon file' })
 vim.keymap.set('n', '<leader>hp', require('harpoon.ui').nav_prev, { desc = 'Navigate to previous harpoon file' })
 
