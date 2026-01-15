@@ -133,8 +133,6 @@ vim.keymap.set('n', '<leader>gv', ':DiffviewOpen master -- %<CR>', { desc = 'Ope
 
 -- Toggles
 vim.keymap.set('n', '<leader>tc', ':TSContext toggle<CR>', { desc = 'Toggle Treesitter Context' })
-vim.keymap.set('n', '<leader>tt', ':Neotree toggle<CR>', { desc = 'Toggle Filetree' })
-vim.keymap.set('n', '<leader>n', ':Neotree focus<CR>', { desc = 'Focus Neotree' })
 vim.keymap.set('n', '<leader>tp', vim.cmd.BufferLineTogglePin, { desc = 'Toggle Buffer Pin' })
 vim.keymap.set('n', '<leader>tl', ':set relativenumber!<CR>', { desc = 'Toggle relative line numbers' })
 vim.keymap.set('n', '<leader>te', ':Lex 30<CR>', { desc = 'Toggle Netrw Explore' })

@@ -92,7 +92,11 @@ require('lazy').setup {
 
   {
     'stevearc/oil.nvim',
-    opts = {},
+    opts = {
+      keymaps = {
+        ['q'] = { 'actions.close', mode = 'n' },
+      },
+    },
     dependencies = { 'nvim-tree/nvim-web-devicons' },
   },
 
@@ -418,24 +422,6 @@ require('lazy').setup {
         mark_branch = true,
         global_settings = {
           mark_branch = true,
-        },
-      }
-    end,
-  },
-
-  {
-    'nvim-neo-tree/neo-tree.nvim',
-    event = 'VeryLazy',
-    version = '*',
-    dependencies = {
-      'nvim-lua/plenary.nvim',
-      'nvim-tree/nvim-web-devicons', -- not strictly required, but recommended
-      'MunifTanjim/nui.nvim',
-    },
-    config = function()
-      require('neo-tree').setup {
-        filesystem = {
-          follow_current_file = { enabled = true },
         },
       }
     end,
