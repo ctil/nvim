@@ -123,6 +123,7 @@ local servers = {
   pyright = {},
   eslint = {},
   jsonls = {},
+  svelte = {},
   emmet_language_server = {
     filetypes = { 'vue' },
   },
