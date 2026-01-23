@@ -395,6 +395,7 @@ require('lazy').setup {
         -- Conform will run multiple formatters sequentially
         python = { 'isort', 'autopep8' },
         javascript = { 'prettier' },
+        svelte = { 'prettier' },
         vue = { 'prettier' },
         json = { 'prettier' },
         typescript = { 'prettier' },
