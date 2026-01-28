@@ -123,7 +123,7 @@ vim.keymap.set('n', '<leader>S', require('spectre').toggle, { desc = 'Toggle Spe
 -- Git keymaps
 vim.keymap.set('n', '<leader>ga', ':0Git commit -a --amend --no-edit<CR>', { desc = 'Amend current commit' })
 vim.keymap.set('n', '<leader>gb', require('gitsigns').blame_line, { desc = 'Git Blame' })
-vim.keymap.set('n', '<leader>gd', ":DiffviewOpen master -- . ':(exclude,attr:linguist-generated=true)'<CR>", { desc = 'Diff all files against master' })
+vim.keymap.set('n', '<leader>gd', ":DiffviewOpen master...HEAD -- . ':(exclude,attr:linguist-generated=true)'<CR>", { desc = 'Diff all files against master' })
 vim.keymap.set('n', '<leader>gx', vim.cmd.DiffviewClose, { desc = 'Close diff view' })
 vim.keymap.set('n', '<leader>gg', ':0Git ', { desc = 'Open Git Command' })
 vim.keymap.set('n', '<leader>gh', require('gitsigns').preview_hunk, { desc = 'Git Preview Hunk' })
