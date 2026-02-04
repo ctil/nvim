@@ -57,6 +57,8 @@ vim.keymap.set('n', '<leader>ob', ':Ex<CR>', { desc = 'Open File Browser' })
 vim.keymap.set('n', '<leader>og', ':GBrowse master:%<CR>', { desc = 'Open in GitHub' })
 vim.keymap.set('n', '<leader>ol', ':Lazy<CR>', { desc = 'Open LazyVim' })
 vim.keymap.set('n', '<leader>om', ':Mason<CR>', { desc = 'Open Mason' })
+vim.keymap.set('n', '<leader>op', ':Oil ./prompts<CR>', { desc = 'Open Prompts Dir' })
+vim.keymap.set('n', '<leader>or', ':Oil .<CR>', { desc = 'Open Root Dir' })
 
 -- Center screen after CTRL-D/U
 vim.keymap.set('n', '<C-d>', '<C-d>zz')
