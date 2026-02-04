@@ -38,5 +38,5 @@ Personal Neovim config using Lazy.nvim plugin manager.
 - Git integration (gitsigns, fugitive, diffview)
 - Harpoon for file marks (branch-specific)
 - Auto-session with git branch support
-- Codeium AI completion
+- Supermaven AI completion (inline ghost-text, accepted with `<Tab>`)
 - Custom Vue snippets in `snippets/vue.json`
