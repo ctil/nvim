@@ -375,6 +375,7 @@ require('lazy').setup {
     event = 'VeryLazy',
     config = function()
       require('supermaven-nvim').setup {
+        ignore_filetypes = { markdown = true },
         -- To use cmp integration instead of inline ghost text, uncomment below:
         -- disable_inline_completion = true,
         -- disable_keymaps = true,
