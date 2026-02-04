@@ -374,7 +374,11 @@ require('lazy').setup {
     'supermaven-inc/supermaven-nvim',
     event = 'VeryLazy',
     config = function()
-      require('supermaven-nvim').setup {}
+      require('supermaven-nvim').setup {
+        -- To use cmp integration instead of inline ghost text, uncomment below:
+        -- disable_inline_completion = true,
+        -- disable_keymaps = true,
+      }
     end,
   },
 
