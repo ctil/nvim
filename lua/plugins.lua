@@ -394,7 +394,7 @@ require('lazy').setup {
         javascript = { 'prettier' },
         svelte = { 'prettier' },
         vue = { 'prettier' },
-        json = { 'prettier' },
+        -- json = { 'prettier' },
         typescript = { 'prettier' },
         rust = { 'rustfmt' },
         scss = { 'trim_whitespace' },

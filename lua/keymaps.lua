@@ -45,6 +45,7 @@ vim.keymap.set('n', '<leader>v', vim.cmd.vsplit, { desc = 'Open a vertical split
 vim.keymap.set('n', '<leader><space>', ':wall<CR>:AutoSession save<CR>', { desc = 'Save' })
 vim.keymap.set('n', '<leader>p', '<C-^>', { desc = 'Goto previous buffer' })
 vim.keymap.set('n', '<leader>cf', ':let @+ = expand("%:.")<CR>', { desc = 'Copy filename' })
+vim.keymap.set('n', '<leader>cl', ':let @+ = expand("%:.") . ":" . line(".")<CR>', { desc = 'Copy filename:line' })
 vim.keymap.set('n', '<leader>ca', 'ggyG', { desc = 'Copy All File Contents' })
 vim.keymap.set('n', 'gh', vim.lsp.buf.signature_help, { desc = 'Signature Documentation' })
 -- When in visual mode, use this mapping to keep what is in your paste buffer
