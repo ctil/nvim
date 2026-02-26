@@ -115,7 +115,7 @@ require('lazy').setup {
       { 'j-hui/fidget.nvim', opts = {} },
 
       -- Additional lua configuration, makes nvim stuff amazing!
-      'folke/neodev.nvim',
+      { 'folke/lazydev.nvim', opts = {} },
     },
     config = function()
       vim.diagnostic.config {
@@ -331,6 +331,7 @@ require('lazy').setup {
     priority = 1000, -- make sure to load this before all the other start plugins
   },
   { 'folke/tokyonight.nvim', event = 'VeryLazy' },
+  { 'EdenEast/nightfox.nvim' },
   {
     -- Theme inspired by Atom
     'navarasu/onedark.nvim',
