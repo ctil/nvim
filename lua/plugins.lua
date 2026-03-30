@@ -124,7 +124,7 @@ require('lazy').setup {
           prefix = '●',
         },
         float = {
-          source = true,
+          source = 'always',
         },
         severity_sort = true,
       }
