@@ -150,6 +150,14 @@ local servers = {
                 enable = false,
                 extraArgs = { '--target-dir', './rust-analyzer-target' },
             },
+            cargo = {
+                extraEnv = {
+                    RUSTFLAGS = '-Z threads=8 --cfg tokio_unstable',
+                },
+            },
+            rustup = {
+                toolchain = 'nightly',
+            },
         },
     },
     -- ts_ls = {
