@@ -21,7 +21,7 @@ cmp.setup {
   completion = {
     completeopt = 'menu,menuone,noinsert,noselect',
     -- Disable autocomplete popup menu — use <C-Space> to trigger manually
-    autocomplete = false,
+    -- autocomplete = false,
   },
   experimental = { ghost_text = false },
   mapping = cmp.mapping.preset.insert {
@@ -76,7 +76,7 @@ cmp.setup {
   sources = {
     { name = 'luasnip' },
     -- { name = 'copilot' },
-    { name = 'supermaven' },
+    -- { name = 'supermaven' },
     { name = 'nvim_lsp' },
     { name = 'buffer' },
     { name = 'nvim_lsp_signature_help' },

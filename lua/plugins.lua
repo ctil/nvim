@@ -11,7 +11,7 @@ require('lazy').setup {
   'tpope/vim-rhubarb',
 
   -- Detect tabstop and shiftwidth automatically
-  -- 'tpope/vim-sleuth',
+  'tpope/vim-sleuth',
 
   -- Trying mini.bracketed instead
   -- 'tpope/vim-unimpaired',
@@ -374,18 +374,18 @@ require('lazy').setup {
   --   event = 'InsertEnter',
   -- },
   --
-  {
-    'supermaven-inc/supermaven-nvim',
-    event = 'VeryLazy',
-    config = function()
-      require('supermaven-nvim').setup {
-        ignore_filetypes = { markdown = true, sh = true },
-        -- To use cmp integration instead of inline ghost text, uncomment below:
-        -- disable_inline_completion = true,
-        -- disable_keymaps = true,
-      }
-    end,
-  },
+  -- {
+  --   'supermaven-inc/supermaven-nvim',
+  --   event = 'VeryLazy',
+  --   config = function()
+  --     require('supermaven-nvim').setup {
+  --       ignore_filetypes = { markdown = true, sh = true },
+  --       -- To use cmp integration instead of inline ghost text, uncomment below:
+  --       -- disable_inline_completion = true,
+  --       -- disable_keymaps = true,
+  --     }
+  --   end,
+  -- },
 
   {
     'stevearc/conform.nvim',
