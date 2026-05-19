@@ -96,6 +96,9 @@ require('lazy').setup {
       keymaps = {
         ['q'] = { 'actions.close', mode = 'n' },
       },
+      view_options = {
+        show_hidden = true,
+      },
     },
     dependencies = { 'nvim-tree/nvim-web-devicons' },
   },
