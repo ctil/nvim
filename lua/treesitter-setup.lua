@@ -7,6 +7,7 @@ require('nvim-treesitter').setup {}
 require('nvim-treesitter').install {
   'go', 'graphql', 'lua', 'python', 'rust', 'tsx', 'javascript',
   'typescript', 'vimdoc', 'vim', 'vue', 'bash', 'svelte', 'sql',
+  'html', 'css',
 }
 
 -- Enable treesitter features via FileType autocommand
