@@ -411,8 +411,11 @@ require('lazy').setup {
       },
       format_on_save = {
         -- These options will be passed to conform.format()
-        timeout_ms = 1000,
-        lsp_fallback = true,
+        -- Give rustfmt room on large repos; never fall back to LSP
+        -- formatting, which discovers a different rustfmt.toml than
+        -- `cargo fmt` and produces inconsistent output.
+        timeout_ms = 5000,
+        lsp_fallback = false,
       },
     },
   },
