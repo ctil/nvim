@@ -409,6 +409,26 @@ require('lazy').setup {
         -- have other formatters configured.
         ['_'] = { 'trim_whitespace' },
       },
+      formatters = {
+        rustfmt = {
+          -- conform's built-in rustfmt uses vim.fs.root with the marker
+          -- list {'rustfmt.toml', '.rustfmt.toml'}. vim.fs.root processes
+          -- that list in order, so on a monorepo it finds the root
+          -- `rustfmt.toml` before ever considering a nearer `.rustfmt.toml`
+          -- and runs rustfmt from the repo root -- ignoring nested configs
+          -- like services/sales/.rustfmt.toml. That makes on-save output
+          -- diverge from `cargo fmt`, which uses the nearest config per
+          -- crate. vim.fs.find returns matches nearest-first regardless of
+          -- name order, so use it to pick the closest config directory.
+          cwd = function(_, ctx)
+            local found = vim.fs.find({ 'rustfmt.toml', '.rustfmt.toml' }, {
+              upward = true,
+              path = ctx.dirname,
+            })[1]
+            return found and vim.fs.dirname(found) or nil
+          end,
+        },
+      },
       format_on_save = {
         -- These options will be passed to conform.format()
         -- Give rustfmt room on large repos; never fall back to LSP
