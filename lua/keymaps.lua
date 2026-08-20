@@ -55,7 +55,7 @@ vim.keymap.set('n', '-', '<CMD>Oil --float<CR>', { desc = 'Open parent directory
 
 -- Open
 vim.keymap.set('n', '<leader>ob', ':Ex<CR>', { desc = 'Open File Browser' })
-vim.keymap.set('n', '<leader>og', ':GBrowse master:%<CR>', { desc = 'Open in GitHub' })
+vim.keymap.set('n', '<leader>og', require('github-url').open_file_in_default_branch, { desc = 'Open in GitHub' })
 vim.keymap.set('n', '<leader>ol', ':Lazy<CR>', { desc = 'Open LazyVim' })
 vim.keymap.set('n', '<leader>om', ':Mason<CR>', { desc = 'Open Mason' })
 vim.keymap.set('n', '<leader>oP', ':Oil ./prompts<CR>', { desc = 'Open Prompts Dir' })
