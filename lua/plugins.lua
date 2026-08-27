@@ -398,11 +398,11 @@ require('lazy').setup {
         lua = { 'stylua' },
         -- Conform will run multiple formatters sequentially
         python = { 'isort', 'autopep8' },
-        javascript = { 'prettier' },
+        javascript = { 'oxfmt', 'prettier', stop_after_first = true },
         svelte = { 'prettier' },
         vue = { 'prettier' },
         -- json = { 'prettier' },
-        typescript = { 'prettier' },
+        typescript = { 'oxfmt', 'prettier', stop_after_first = true },
         rust = { 'rustfmt' },
         scss = { 'trim_whitespace' },
         -- Use the "_" filetype to run formatters on filetypes that don't
