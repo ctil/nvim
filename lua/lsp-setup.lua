@@ -132,6 +132,7 @@ local servers = {
   eslint = {},
   jsonls = {},
   svelte = {},
+  terraformls = {},
   emmet_language_server = {
     filetypes = { 'vue' },
   },

@@ -66,3 +66,6 @@ vim.o.splitright = true
 vim.o.tabstop = 4
 -- vim.cmd 'colorscheme tokyonight'
 vim.cmd 'colorscheme nightfox'
+
+-- Neovim maps *.tf to TinyFugue by default; treat it as Terraform
+vim.filetype.add { extension = { tf = 'terraform' } }

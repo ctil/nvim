@@ -404,6 +404,9 @@ require('lazy').setup {
         -- json = { 'prettier' },
         typescript = { 'oxfmt', 'prettier', stop_after_first = true },
         rust = { 'rustfmt' },
+        terraform = { 'terraform_fmt' },
+        ['terraform-vars'] = { 'terraform_fmt' },
+        hcl = { 'terraform_fmt' },
         scss = { 'trim_whitespace' },
         -- Use the "_" filetype to run formatters on filetypes that don't
         -- have other formatters configured.
