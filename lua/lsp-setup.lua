@@ -145,6 +145,12 @@ local servers = {
   -- },
   rust_analyzer = {
     ['rust-analyzer'] = {
+      -- 'discover' is rust-analyzer's default, but setting it explicitly stops
+      -- lspconfig's root_dir from synchronously running
+      -- `cargo -Z unstable-options rustc --print sysroot` (~1s in the monorepo)
+      -- every time a Rust buffer opens. Library detection still works via the
+      -- ~/.rustup/toolchains check.
+      cargo = { sysroot = 'discover' },
       checkOnSave = {
         command = 'clippy',
         enable = false,
