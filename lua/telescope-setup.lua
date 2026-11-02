@@ -100,7 +100,7 @@ local function pick_branch()
         actions.close(prompt_bufnr)
 
         -- Save session
-        vim.cmd 'AutoSession save'
+        require('sessions').save()
 
         -- Checkout the selected branch
         local command = string.format('git checkout %s', selection.value)
@@ -110,7 +110,7 @@ local function pick_branch()
         vim.cmd '%bd!'
 
         -- Restore session
-        vim.cmd 'AutoSession restore'
+        require('sessions').restore()
       end)
       return true
     end,

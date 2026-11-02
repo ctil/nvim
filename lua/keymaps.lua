@@ -42,7 +42,7 @@ vim.keymap.set('i', 'jk', '<esc>')
 vim.keymap.set('i', 'kj', '<esc>')
 vim.keymap.set('n', '<leader>d', ":lua vim.diagnostic.open_float({ border = 'rounded' })<CR>", { desc = 'Show diagnostic' })
 vim.keymap.set('n', '<leader>v', vim.cmd.vsplit, { desc = 'Open a vertical split' })
-vim.keymap.set('n', '<leader><space>', ':wall<CR>:AutoSession save<CR>', { desc = 'Save' })
+vim.keymap.set('n', '<leader><space>', ':wall<CR>:SessionSave<CR>', { desc = 'Save' })
 vim.keymap.set('n', '<leader>p', '<C-^>', { desc = 'Goto previous buffer' })
 vim.keymap.set('n', '<leader>cf', ':let @+ = expand("%:.")<CR>', { desc = 'Copy filename' })
 vim.keymap.set('n', '<leader>cl', ':let @+ = expand("%:.") . ":" . line(".")<CR>', { desc = 'Copy filename:line' })
@@ -201,7 +201,7 @@ vim.keymap.set('n', '<leader>jc', '/<style<CR>zz', { desc = 'Jump to css/style' 
 
 -- Session management
 vim.keymap.set('n', '<leader>sd', '<cmd>!rm ~/.local/share/nvim/sessions/* && rm ~/.local/share/nvim/harpoon.json<CR>', { desc = 'Delete All Sessions' })
-vim.keymap.set('n', '<leader>sr', ':%bd!<CR>:AutoSession restore<CR>', { desc = 'Restore Session' })
+vim.keymap.set('n', '<leader>sr', ':%bd!<CR>:SessionRestore<CR>', { desc = 'Restore Session' })
 
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
