@@ -395,7 +395,7 @@ require('lazy').setup {
         python = { 'isort', 'autopep8' },
         javascript = { 'oxfmt', 'prettier', stop_after_first = true },
         svelte = { 'prettier' },
-        vue = { 'prettier' },
+        vue = { 'oxfmt', 'prettier', stop_after_first = true },
         -- json = { 'prettier' },
         typescript = { 'oxfmt', 'prettier', stop_after_first = true },
         rust = { 'rustfmt' },
