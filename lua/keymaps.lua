@@ -83,6 +83,24 @@ vim.keymap.set('n', 'J', 'mzJ`z')
 -- vim.keymap.set('n', '<C-j>', '<C-w>j')
 -- vim.keymap.set('n', '<C-k>', '<C-w>k')
 
+-- In Rex (outside tmux), replace tmux-navigator's mappings: move between vim
+-- splits, and hand focus to the neighboring Rex pane at the edge.
+if vim.env.REX_SESSION and not vim.env.TMUX then
+  local function rex_navigate(wincmd, dir)
+    return function()
+      local win = vim.api.nvim_get_current_win()
+      vim.cmd('wincmd ' .. wincmd)
+      if vim.api.nvim_get_current_win() == win then
+        vim.system { 'rex', 'focus', '-s', vim.env.REX_SESSION, dir }
+      end
+    end
+  end
+  vim.keymap.set('n', '<C-h>', rex_navigate('h', 'left'), { desc = 'Navigate left (vim/Rex)' })
+  vim.keymap.set('n', '<C-j>', rex_navigate('j', 'down'), { desc = 'Navigate down (vim/Rex)' })
+  vim.keymap.set('n', '<C-k>', rex_navigate('k', 'up'), { desc = 'Navigate up (vim/Rex)' })
+  vim.keymap.set('n', '<C-l>', rex_navigate('l', 'right'), { desc = 'Navigate right (vim/Rex)' })
+end
+
 -- Harpoon
 vim.keymap.set('n', '<leader>hh', require('harpoon.ui').toggle_quick_menu, { desc = 'Open harpoon menu' })
 vim.keymap.set('n', '<leader>ha', require('harpoon.mark').add_file, { desc = 'Add harpoon mark' })
